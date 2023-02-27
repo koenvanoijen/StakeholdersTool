@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-import TransformData
+import Preprocess
 
 
 def retrieveURL(url):
@@ -10,7 +10,7 @@ def retrieveURL(url):
 
 def getURL():
     # return "https://en.wikipedia.org/wiki/Absorptive_capacity"
-     return "https://www.hellonewday.nl/wat-is-absorptive-capacity/"
+    return "https://www.hellonewday.nl/wat-is-absorptive-capacity/"
 
 def getTitle(soup):
     return remove_html_tags(soup.find('title').text)
@@ -49,7 +49,7 @@ if __name__ == '__main__':
 
 
 
-    TransformData.preproccess(paragraphs[0])
+    Preprocess.preproccess(paragraphs[0])
 
 
 
