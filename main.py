@@ -10,8 +10,10 @@ def retrieveURL(url):
 
 #TO DO make this automaticaly find relevant URL's
 def getURL():
-     return "https://en.wikipedia.org/wiki/Absorptive_capacity"
+    # return "https://en.wikipedia.org/wiki/Absorptive_capacity"
     # return "https://www.hellonewday.nl/wat-is-absorptive-capacity/"
+    # return "https://www.hellonewday.nl/wieishellonewday/"
+    return "https://nos.nl/artikel/2466423-fc-den-bosch-ontslaat-trainer-de-gier-na-recordnederlaag-van-13-0"
 
 def getTitle(soup):
     return remove_html_tags(soup.find('title').text)
@@ -51,6 +53,7 @@ if __name__ == '__main__':
     paragraphs = cleanSoupList(getParagraphs(soup))
     website = title + subtitle + subsubtitle + paragraphs
     language = Preprocess.languageRecognizeProcess(website)
+    print("Dutch = ", language)
     website = " ".join(website)
     Preprocess.preproccess(website, language)
 

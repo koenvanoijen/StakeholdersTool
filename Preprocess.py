@@ -52,11 +52,6 @@ def lemma(text, dutch):
         wordnet_lemmatizer = WordNetLemmatizer()
         return [wordnet_lemmatizer.lemmatize(word) for word in text]
 
-def tagged(text, dutch):
-    if not dutch:
-        return nltk.pos_tag(text)
-    else:
-        return text
 
 def languageRecognizeProcess(website):
     for x in website:
@@ -65,6 +60,7 @@ def languageRecognizeProcess(website):
             return True
     return False
 
+
 def preproccess(text, dutch):
     # Step by step preprocessing
     # 1. tokenize
@@ -72,19 +68,14 @@ def preproccess(text, dutch):
     # 2. stopword removal
     sw_text = stopWordRemoval(tokenized_Text, dutch)
     # 3.1 stemming (can be replaced with lemmetization)
-    # However we chose lemmatization if the language is English
+    # However we chose lemmatization if the language is English as this is more accurate
     if dutch:
         stemmed_text = stemming(sw_text, dutch)
     else:
         # 4.1 Lemmatization (can be replaced with stemming
         stemmed_text = lemma(sw_text, dutch)
-    stemmed_text = " ".join(stemmed_text)
-    #part of speech tagging
-    #tagged_text = tagged(stemmed_text, dutch)
-    tagged_text = EntityTagging.tagging(stemmed_text, dutch)
 
-    # print(dutch)
-    # print(tokenized_Text)
-    # print(sw_text)
-    # print(stemmed_text)
-    # print(tagged_text)
+    combined_text = " ".join(stemmed_text)
+
+    #tagged_text = EntityTagging.taggingSPACY(text, dutch)
+    EntityTagging.capRecognition(tokenized_Text)
