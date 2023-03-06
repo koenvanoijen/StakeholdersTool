@@ -1,4 +1,5 @@
 import nltk
+import EntityTagging
 from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
@@ -7,11 +8,10 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tag import pos_tag
 
 
-
 # nltk.download('PorterStemmer')
 # nltk.download('stopwords')
 #nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
+# nltk.download('averaged_perceptron_tagger')
 
 def tokenize(text):
     return wordpunct_tokenize(text)
@@ -19,7 +19,7 @@ def tokenize(text):
 
 # detect the language of dutch and english with typical dutch words
 def detectLanguage(text):
-    dutch = ['de', 'het', 'een', 'ik', 'wij', 'jij', 'hij', 'zij']
+    dutch = ['het', 'een', 'ik', 'wij', 'jij', 'hij', 'zij']
     for w in dutch:
         if w in text:
             print(w)
@@ -58,28 +58,33 @@ def tagged(text, dutch):
     else:
         return text
 
-def preproccess(text):
+def languageRecognizeProcess(website):
+    for x in website:
+        y = tokenize(x)
+        if detectLanguage(y):
+            return True
+    return False
+
+def preproccess(text, dutch):
     # Step by step preprocessing
     # 1. tokenize
     tokenized_Text = tokenize(text)
-    # 2. detect the language
-    dutch = detectLanguage(tokenized_Text)
-    # 3. stopword removal
+    # 2. stopword removal
     sw_text = stopWordRemoval(tokenized_Text, dutch)
-    # 4.1 stemming (can be replaced with lemmetization)
+    # 3.1 stemming (can be replaced with lemmetization)
     # However we chose lemmatization if the language is English
     if dutch:
         stemmed_text = stemming(sw_text, dutch)
     else:
-        # 4.2 Lemmatization (can be replaced with stemming
+        # 4.1 Lemmatization (can be replaced with stemming
         stemmed_text = lemma(sw_text, dutch)
-
+    stemmed_text = " ".join(stemmed_text)
     #part of speech tagging
-    tagged_text = tagged(stemmed_text, dutch)
+    #tagged_text = tagged(stemmed_text, dutch)
+    tagged_text = EntityTagging.tagging(stemmed_text, dutch)
 
-
-    print(dutch)
-    print(tokenized_Text)
-    print(sw_text)
-    print(stemmed_text)
-    print(tagged_text)
+    # print(dutch)
+    # print(tokenized_Text)
+    # print(sw_text)
+    # print(stemmed_text)
+    # print(tagged_text)
