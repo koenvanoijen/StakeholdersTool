@@ -3,6 +3,8 @@ from collections import Counter
 from spacy import displacy
 nlp = spacy.load('en_core_web_sm')
 nlp_nl = spacy.load('nl_core_news_sm')
+
+#### This file is the spacy text analyis including capRecognition that still doesn't work.
 def taggingSPACY(text, dutch):
     if dutch:
         textNLP = nlp_nl(text)
@@ -13,9 +15,10 @@ def taggingSPACY(text, dutch):
     print(Counter(items).most_common(3))
     return textNLP
 
+
+#Far from foolproof and does not work as I wanted to it 
 def capRecognition(text):
     # Look for every word starting with Caps
-    napWords = [t for t in text if t[0].isupper()]
     capWords = []
     print(text)
     i = 0
@@ -42,5 +45,6 @@ def capRecognition(text):
                 capWords[i] = capWords[k-1]
                 break
             k = k - 1
-    print(Counter(capWords).most_common(3))
+    print(Counter(capWords))
+    print("https://unbiased-coder.com/extract-names-python-nltk/")
 

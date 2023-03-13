@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+import NER
 import Preprocess
 
 
@@ -12,20 +13,8 @@ def retrieveURL(url):
 def getURL():
     # return "https://en.wikipedia.org/wiki/Absorptive_capacity"
     # return "https://www.hellonewday.nl/wat-is-absorptive-capacity/"
-    # return "https://www.hellonewday.nl/wieishellonewday/"
-    return "https://nos.nl/artikel/2466423-fc-den-bosch-ontslaat-trainer-de-gier-na-recordnederlaag-van-13-0"
-
-def getTitle(soup):
-    return remove_html_tags(soup.find('title').text)
-
-def getSubtitle(soup):
-    return soup.find_all('h1')
-
-def getSubsubtitle(soup):
-    return soup.find_all('h2')
-
-def getParagraphs(soup):
-    return soup.find_all('p')
+    return "https://www.hellonewday.nl/wieishellonewday/"
+    # return "https://nos.nl/artikel/2466423-fc-den-bosch-ontslaat-trainer-de-gier-na-recordnederlaag-van-13-0"
 
 def cleanSoupList(listHTML):
     cleanarray = []
@@ -41,17 +30,14 @@ def remove_html_tags(text):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    #retrieve the relevant urls and clean them with beautifulSopu
+    # retrieve the relevant urls and clean them with beautifulSoup
     page = retrieveURL(getURL())
     soup = BeautifulSoup(page.content, "html.parser")
-    cleantext = remove_html_tags(page.text)
 
-    #Find all the relevant layers of text on a webpage
-    title = [getTitle(soup)]
-    subtitle = cleanSoupList(getSubtitle(soup))
-    subsubtitle = cleanSoupList(getSubsubtitle(soup))
-    paragraphs = cleanSoupList(getParagraphs(soup))
-    website = title + subtitle + subsubtitle + paragraphs
+    #Find all text that is between relevant html tags and then remove the tags
+    website = [remove_html_tags(tag.text) for tag in soup.find_all() if tag.name in ['title', 'h1', 'h2', 'p']]
+
+    # Recognize the language of the text
     language = Preprocess.languageRecognizeProcess(website)
     print("Dutch = ", language)
     website = " ".join(website)

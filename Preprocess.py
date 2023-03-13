@@ -1,5 +1,5 @@
 import nltk
-import EntityTagging
+import SPACY_NER
 from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
@@ -12,6 +12,8 @@ from nltk.tag import pos_tag
 # nltk.download('stopwords')
 #nltk.download('wordnet')
 # nltk.download('averaged_perceptron_tagger')
+import NER
+
 
 def tokenize(text):
     return wordpunct_tokenize(text)
@@ -36,7 +38,7 @@ def stopWordRemoval(text, dutch):
     # they are present in stop_words or not
     return [w for w in text if not w.lower() in stop_words]
 
-
+#stemming is process of reducing a word to its stem. This is different for enlgish and dutch
 def stemming(text, dutch):
     if dutch:
         snowball = SnowballStemmer(language='dutch')
@@ -45,6 +47,7 @@ def stemming(text, dutch):
     # return [PorterStemmer().stem(w) for w in text]
     return [snowball.stem(w) for w in text]
 
+#Lemmatization is stemming, but smarter. Only works in english.
 def lemma(text, dutch):
     if dutch:
         return stemming(text, dutch)
@@ -69,13 +72,9 @@ def preproccess(text, dutch):
     sw_text = stopWordRemoval(tokenized_Text, dutch)
     # 3.1 stemming (can be replaced with lemmetization)
     # However we chose lemmatization if the language is English as this is more accurate
-    if dutch:
-        stemmed_text = stemming(sw_text, dutch)
-    else:
-        # 4.1 Lemmatization (can be replaced with stemming
-        stemmed_text = lemma(sw_text, dutch)
+    stemmed_text = lemma(sw_text, dutch)
 
     combined_text = " ".join(stemmed_text)
 
     #tagged_text = EntityTagging.taggingSPACY(text, dutch)
-    EntityTagging.capRecognition(tokenized_Text)
+    NER.predictPerson(text)
