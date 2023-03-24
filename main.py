@@ -2,11 +2,16 @@ import requests
 from bs4 import BeautifulSoup
 
 import NER
+
 import Preprocess
 import tf_idf
 
 
 def retrieveURL(url):
+    """
+    uses the url pararmeter to request the webpage
+    gives a list of all data on webpage
+    """
     webpage = requests.get(url)
     return webpage
 
@@ -14,7 +19,7 @@ def retrieveURL(url):
 def getURL():
     # return "https://en.wikipedia.org/wiki/Absorptive_capacity"
     # return "https://www.hellonewday.nl/wat-is-absorptive-capacity/"
-    # return "https://www.hellonewday.nl/wieishellonewday/"
+    return "https://www.hellonewday.nl/wieishellonewday/"
     # return "https://nos.nl/artikel/2466423-fc-den-bosch-ontslaat-trainer-de-gier-na-recordnederlaag-van-13-0"
     # return "https://www.infratech.nl/over-infratech/nieuws/exposanten/-groot-variabel-onderhoud-hoofdwegennet-wnz-2019-voor-vermeulen-groep"
     return "https://www.dispuutbrut.nl/"

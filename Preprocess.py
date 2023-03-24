@@ -1,4 +1,4 @@
-#import nltk
+import nltk
 #import SPACY_NER
 from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
@@ -7,12 +7,11 @@ from nltk.stem import SnowballStemmer
 from nltk.stem import WordNetLemmatizer
 from nltk.tag import pos_tag
 
-
-# nltk.download('PorterStemmer')
-# nltk.download('stopwords')
-#nltk.download('wordnet')
-# nltk.download('averaged_perceptron_tagger')
-#import NER
+nltk.download('PorterStemmer')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+import NER
 
 
 def tokenize(text):
@@ -29,8 +28,8 @@ def detectLanguage(text):
     return False
 
 
-def stopWordRemoval(text, dutch):
-    if dutch:
+def stopWordRemoval(text, is_dutch_bool):
+    if is_dutch_bool:
         stop_words = set(stopwords.words('dutch') + ['wij'])
     else:
         stop_words = set(stopwords.words('english'))
@@ -39,8 +38,8 @@ def stopWordRemoval(text, dutch):
     return [w for w in text if not w.lower() in stop_words]
 
 #stemming is process of reducing a word to its stem. This is different for enlgish and dutch
-def stemming(text, dutch):
-    if dutch:
+def stemming(text, is_dutch_bool):
+    if is_dutch_bool:
         snowball = SnowballStemmer(language='dutch')
     else:
         snowball = SnowballStemmer(language='english')
@@ -48,9 +47,9 @@ def stemming(text, dutch):
     return [snowball.stem(w) for w in text]
 
 #Lemmatization is stemming, but smarter. Only works in english.
-def lemma(text, dutch):
-    if dutch:
-        return stemming(text, dutch)
+def lemma(text, is_dutch_bool):
+    if is_dutch_bool:
+        return stemming(text, is_dutch_bool)
     else:
         wordnet_lemmatizer = WordNetLemmatizer()
         return [wordnet_lemmatizer.lemmatize(word) for word in text]
@@ -64,15 +63,15 @@ def languageRecognizeProcess(website):
     return False
 
 
-def preproccess(text, dutch):
+def preproccess(text, is_dutch_bool):
     # Step by step preprocessing
     # 1. tokenize
     tokenized_Text = tokenize(text)
     # 2. stopword removal
-    sw_text = stopWordRemoval(tokenized_Text, dutch)
+    sw_text = stopWordRemoval(tokenized_Text, is_dutch_bool)
     # 3.1 stemming (can be replaced with lemmetization)
     # However we chose lemmatization if the language is English as this is more accurate
-    stemmed_text = lemma(sw_text, dutch)
+    stemmed_text = lemma(sw_text, is_dutch_bool)
 
     combined_text = " ".join(stemmed_text)
 
