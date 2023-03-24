@@ -1,5 +1,5 @@
-import nltk
-import SPACY_NER
+#import nltk
+#import SPACY_NER
 from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
@@ -12,7 +12,7 @@ from nltk.tag import pos_tag
 # nltk.download('stopwords')
 #nltk.download('wordnet')
 # nltk.download('averaged_perceptron_tagger')
-import NER
+#import NER
 
 
 def tokenize(text):
@@ -77,4 +77,4 @@ def preproccess(text, dutch):
     combined_text = " ".join(stemmed_text)
 
     #tagged_text = EntityTagging.taggingSPACY(text, dutch)
-    NER.predictPerson(text)
+    return stemmed_text
