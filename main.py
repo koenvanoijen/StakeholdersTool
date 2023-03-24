@@ -7,7 +7,7 @@ import Preprocess
 import tf_idf
 
 
-def retrieveURL(url):
+def retrieve_webpage(url):
     """
     url --> receive a url as string
     request webpage with url
@@ -26,7 +26,7 @@ def getURL():
     return "https://www.hellonewday.nl/wieishellonewday/"
     # return "https://nos.nl/artikel/2466423-fc-den-bosch-ontslaat-trainer-de-gier-na-recordnederlaag-van-13-0"
     # return "https://www.infratech.nl/over-infratech/nieuws/exposanten/-groot-variabel-onderhoud-hoofdwegennet-wnz-2019-voor-vermeulen-groep"
-    return "https://www.dispuutbrut.nl/"
+    #return "https://www.dispuutbrut.nl/"
 
 
 def cleanSoupList(listHTML):
@@ -47,8 +47,8 @@ def remove_html_tags(text):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     # retrieve the relevant urls and clean them with beautifulSoup
-    page = retrieveURL(getURL())
-    soup = BeautifulSoup(page.content, "html.parser")
+    page = retrieve_webpage(getURL())
+    soup = BeautifulSoup(page.text, "html.parser")
 
     #Find all text that is between relevant html tags and then remove the tags
     website = [remove_html_tags(tag.text) for tag in soup.find_all() if tag.name in ['title', 'h1', 'h2', 'p']]
