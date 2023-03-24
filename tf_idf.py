@@ -9,3 +9,4 @@ def cosine(text, query):
     # Calculate cosine similarity
     similarity_score = cosine_similarity(query_vec, text_vec)[0][0]
     print(similarity_score)
+    return similarity_score
