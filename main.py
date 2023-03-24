@@ -9,14 +9,18 @@ import tf_idf
 
 def retrieveURL(url):
     """
-    uses the url pararmeter to request the webpage
-    gives a list of all data on webpage
+    url --> receive a url as string
+    request webpage with url
+    returns webpage which is a list of all data on webpage
     """
     webpage = requests.get(url)
     return webpage
 
 #TO DO make this automaticaly find relevant URL's
 def getURL():
+    """
+    returns one of webpages to test
+    """
     # return "https://en.wikipedia.org/wiki/Absorptive_capacity"
     # return "https://www.hellonewday.nl/wat-is-absorptive-capacity/"
     return "https://www.hellonewday.nl/wieishellonewday/"
@@ -26,6 +30,9 @@ def getURL():
 
 
 def cleanSoupList(listHTML):
+    """"
+
+    """
     cleanarray = []
     for html in listHTML:
         cleanarray.append(remove_html_tags(html.text))
@@ -47,11 +54,11 @@ if __name__ == '__main__':
     website = [remove_html_tags(tag.text) for tag in soup.find_all() if tag.name in ['title', 'h1', 'h2', 'p']]
 
     # Recognize the language of the text
-    language = Preprocess.languageRecognizeProcess(website)
-    print("Dutch = ", language)
+    is_language_dutch = Preprocess.languageRecognizeProcess(website)
+    print("Dutch = ", is_language_dutch)
     website = " ".join(website)
-    text = Preprocess.preproccess(website, language)
-    text = " ".join(text)
+    text = Preprocess.preproccess(website, is_language_dutch) #text is received as list of words
+    text = " ".join(text)  #text to single string
     query = 'absorptive capacity, assimilatie'
     query = Preprocess.preproccess(query, True)
     print(query)
