@@ -5,6 +5,9 @@ from flair.data import Sentence
 ###based on model from https://huggingface.co/flair/ner-dutch-large #####
 ### With flair we have the posibility to train ourselves on data, but for now it works fine.
 def predictPerson(text):
+    """
+    text --> unpreprocessed text
+    """
     tagger = SequenceTagger.load("flair/ner-dutch-large")
 
     # make example sentence

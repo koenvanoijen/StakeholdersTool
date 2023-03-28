@@ -1,22 +1,26 @@
+import re
+
 import nltk
 #import SPACY_NER
 from nltk.tokenize import wordpunct_tokenize
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
 from nltk.stem import SnowballStemmer
 from nltk.stem import WordNetLemmatizer
-from nltk.tag import pos_tag
 
-nltk.download('PorterStemmer')
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
+##### Uncomment when not yet downloaded #######
+# nltk.download('PorterStemmer')
+# nltk.download('stopwords')
+# nltk.download('wordnet')
+# nltk.download('averaged_perceptron_tagger')
+##############
 import NER
 
 
 def tokenize(text):
     return wordpunct_tokenize(text)
 
+def punctuationRemoval(text):
+    return re.sub(r'[^\w\s]', '', text)
 
 # detect the language of dutch and english with typical dutch words
 def detectLanguage(text):
@@ -80,8 +84,11 @@ def languageRecognizeProcess(website):
     return False
 
 
+
 def preproccess(text, is_dutch_bool):
     # Step by step preprocessing
+    # 0. remove punctuation
+    text = punctuationRemoval(text)
     # 1. tokenize
     tokenized_Text = tokenize(text)
     # 2. stopword removal

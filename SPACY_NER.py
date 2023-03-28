@@ -5,6 +5,8 @@ nlp = spacy.load('en_core_web_sm')
 nlp_nl = spacy.load('nl_core_news_sm')
 
 #### This file is the spacy text analyis including capRecognition that still doesn't work.
+
+##### In other words: could be removed in the near future ######
 def taggingSPACY(text, dutch):
     if dutch:
         textNLP = nlp_nl(text)
