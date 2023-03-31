@@ -7,8 +7,8 @@ def cosine(text, query):
     # Convert text and search queries to feature vectors
     vectorizer = TfidfVectorizer()
 
-    query_vec = vectorizer.fit_transform([text])
-    text_vec = vectorizer.transform(query)
+    text_vec = vectorizer.fit_transform([text])
+    query_vec = vectorizer.transform(query)
 
     # Calculate cosine similarity
     similarity_scores = cosine_similarity(query_vec, text_vec)
