@@ -19,11 +19,11 @@ import NER
 def tokenize(text):
     return wordpunct_tokenize(text)
 
-def punctuationRemoval(text):
+def punctuation_removal(text):
     return re.sub(r'[^\w\s]', '', text)
 
 # detect the language of dutch and english with typical dutch words
-def detectLanguage(text):
+def detect_language(text):
     """
     detect language of based on a list of language characterising words
     returns true for dutch
@@ -32,12 +32,11 @@ def detectLanguage(text):
     dutch = ['het', 'een', 'ik', 'wij', 'jij', 'hij', 'zij']
     for w in dutch:
         if w in text:
-            print(w)
             return True
     return False
 
 
-def stopWordRemoval(text, is_dutch_bool):
+def stop_word_removal(text, is_dutch_bool):
     """
     remove words that don't contain information (stopwords)
     returns list of information containing words
@@ -76,23 +75,37 @@ def lemma(text, is_dutch_bool):
         return [wordnet_lemmatizer.lemmatize(word) for word in text]
 
 
-def languageRecognizeProcess(website):
+def language_recognize_process(website):
     for x in website:
         y = tokenize(x)
-        if detectLanguage(y):
+        if detect_language(y):
             return True
     return False
 
 
 
-def preproccess(text, is_dutch_bool):
+def preproccess(text, is_dutch_bool = "determine_language"):
+    """
+    input:
+     text: to preprocess
+     is_dutch_bool: default is "determine --> it will be determined by languageRecognizeProcess
+        Can be overwritten by giving it a True or False
+    output:
+    stemmed text without stopwords in a standardized form
+
+    """
+    # step -1 determine the language
+    if is_dutch_bool == "determine_language":
+        is_dutch_bool = language_recognize_process(text)
+
+    text = " ".join(text)
     # Step by step preprocessing
     # 0. remove punctuation
-    text = punctuationRemoval(text)
+    text = punctuation_removal(text)
     # 1. tokenize
-    tokenized_Text = tokenize(text)
+    tokenized_text = tokenize(text)
     # 2. stopword removal
-    sw_text = stopWordRemoval(tokenized_Text, is_dutch_bool)
+    sw_text = stop_word_removal(tokenized_text, is_dutch_bool)
     # 3.1 stemming (can be replaced with lemmetization)
     # However we chose lemmatization if the language is English as this is more accurate
     stemmed_text = lemma(sw_text, is_dutch_bool)

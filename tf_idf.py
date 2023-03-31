@@ -3,7 +3,14 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 def cosine(text, query):
-    """ text as one sentence and queries as seperate words"""
+    """
+    input:
+        text = preprocessed string of text in a clean form
+        query = preprocessed list of query words
+
+    ouput:
+        return similarity scores of query vector and text vector
+    """
     # Convert text and search queries to feature vectors
     vectorizer = TfidfVectorizer()
 
@@ -12,8 +19,8 @@ def cosine(text, query):
 
     # Calculate cosine similarity
     similarity_scores = cosine_similarity(query_vec, text_vec)
-    print()
-    print("similarity score: ", similarity_scores)
+    #print()
+    #print("similarity score: ", similarity_scores)
 
     return similarity_scores[0]
 
@@ -27,17 +34,18 @@ def scoreAnalysis(similarity_scores, weights):
 
 
 # count the occurrences of the words and weight them with the size of the text
-def occurranceMatching(text, queries):
+def occurrance_matching(text, queries):
     """ text as seperate and queries as seperate words"""
     query_freq = {}
     search_query_words= [query.split() for query in queries]
     for query in search_query_words:
         freq = sum([text.count(word) for word in query])
-        print(freq)
+        #print(freq)
         query_freq[' '.join(query)] = freq / len(text)
 
     # Rank search queries by relevance
     ranked_queries = sorted(query_freq.items(), key=lambda x: x[1], reverse=True)
     # Display results
     for query, score in ranked_queries:
-       print(f"{query}: {score}")
+        pass
+       #print(f"{query}: {score}")
