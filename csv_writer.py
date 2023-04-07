@@ -11,10 +11,10 @@ def create_csv_file(file_path):
         None
     """
     # Define the column names
-    fieldnames = ["similarity_score", "url_link", "parent_url", "outgoing_links_list", "webpage_vector"]
+    fieldnames = ["similarity_score", "url_link", "parent_url", "outgoing_links_set","out_going_links_list_with_similarity", "webpage_vector"]
 
     # Create the CSV file with column names
-    with open(file_path, mode='w', newline='') as csv_file:
+    with open(file_path, mode='w', newline='',encoding='utf-8') as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
     print(f"CSV file '{file_path}' created successfully!")
@@ -26,7 +26,7 @@ def update_csv_file(file_path, data):
     Args:
         file_path (str): File path of the CSV file.
         data (dict): Data to be written to the CSV file. Should be a dictionary with keys as column names and values
-                     as data to be written. In form :["similarity_score", "url_link", "source_link", "outgoing_links_list", "webpage_vector"]
+                     as data to be written. In form :["similarity_score", "url_link", "source_link","outgoing_links_set", "out_going_links_list_with_similarity", "webpage_vector"]
 
     Returns:
         None
@@ -36,7 +36,7 @@ def update_csv_file(file_path, data):
         create_csv_file(file_path)
 
     # Append new data to the CSV file
-    with open(file_path, mode='a', newline='') as csv_file:
+    with open(file_path, mode='a', newline='', encoding='utf-8') as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=data.keys())
         writer.writerow(data)
     print(f"Data updated in CSV file '{file_path}' successfully!")
