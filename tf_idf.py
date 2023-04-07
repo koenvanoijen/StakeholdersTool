@@ -1,7 +1,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
-
+import main
+import Preprocess
 def cosine(text, query):
     """
     input:
@@ -9,20 +9,22 @@ def cosine(text, query):
         query = preprocessed list of query words
 
     ouput:
-        return similarity scores of query vector and text vector
+        return:
+         similarity scores of query vector and text vector
+         text_vec of text vector
     """
     # Convert text and search queries to feature vectors
     vectorizer = TfidfVectorizer()
 
     text_vec = vectorizer.fit_transform([text])
-    query_vec = vectorizer.transform(query)
 
+    query_vec = vectorizer.transform(query)
     # Calculate cosine similarity
     similarity_scores = cosine_similarity(query_vec, text_vec)
     #print()
     #print("similarity score: ", similarity_scores)
 
-    return similarity_scores[0]
+    return similarity_scores[0], text_vec
 
 
 def scoreAnalysis(similarity_scores, weights):
@@ -49,3 +51,4 @@ def occurrance_matching(text, queries):
     for query, score in ranked_queries:
         pass
        #print(f"{query}: {score}")
+

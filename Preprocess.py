@@ -82,7 +82,8 @@ def language_recognize_process(website):
             return True
     return False
 
-
+def preprocess_query(word_list):
+    pass
 
 def preproccess(text, is_dutch_bool = "determine_language"):
     """

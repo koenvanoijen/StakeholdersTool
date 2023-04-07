@@ -4,6 +4,7 @@ import re
 import Preprocess
 import tf_idf
 import csv
+import os
 def get_links_html(url):
     """
     parameter : link in string_format
@@ -13,7 +14,7 @@ def get_links_html(url):
     """
     page = requests.get(url)
     data = page.text
-    soup = BeautifulSoup(data,features = 'lxml') #features = xml was op basis van advies van de console om foutmelding weg te halen
+    soup = BeautifulSoup(data,features = 'lxml')
     links = list()
     for link in soup.find_all('a'):
         links.append(link.get('href'))
@@ -67,57 +68,101 @@ def is_not_valid_html_text(text):
     if len(text) < 10:
         return True
 
-def similarity_query_links(link_list):
+def similarity_check_query_with_linklist(query, link_list):
     """
+    query is not yet preprocessed, it is given as a normal list
     input:
+        query : the query to be compared with to get similarity score
         link_list: list of links that must explored
+        origin_link:
 
     output:
         return: list of links with their respective similarity score to the query
     """
-    query = ['absorptive capacity', 'assimilation', 'acquisition', 'transformation']
-    query_preprocessed = [" ".join(Preprocess.preproccess(word, False)) for word in query]
+
     weights = [1 for _ in query]
     results = list()
+
     for index, link in enumerate(link_list):
         preprocessed_text = fetch_important_text_in_link(link)
 
         if is_not_valid_html_text(preprocessed_text):
-            continue #text skips vectorization
+            continue #text skips vectorization to prevent error
 
         print(index, link, preprocessed_text)
-        similarity_score = tf_idf.scoreAnalysis(tf_idf.cosine(preprocessed_text, query), weights)
+        similarity_score = tf_idf.scoreAnalysis(tf_idf.cosine(preprocessed_text, query)[0], weights)
         print(index, link, similarity_score)
         results.append([similarity_score, link])
 
 
     return sorted(results, reverse= True)
 
-def write_csv(similarity_link_results_list):
+def results_of_tf_idf_to_dict(results):
+    data_dict = {
+        "similarity_score": results[0],
+        "url_link": results[1],
+        "source_link": results[2],
+        "outgoing_links_list": ["https://example.com/page2", "https://example.com/page3"],
+        "webpage_vector": [0.1, 0.2, 0.3, 0.4]
+    }
+def create_csv_file(file_path):
     """
-    input:
-        list of all similarity score and respective link
-    saves results of the list in csv file
+    Creates a CSV file with the specified columns.
+
+    Args:
+        file_path (str): File path of the CSV file.
+
+    Returns:
+        None
     """
-    try:
-        with open("results.csv", "w") as output_file:
-            writer = csv.writer(output_file)
-            header = ["similarity_score", "url_link"]
-            writer.writerow(header)
-            writer.writerow(similarity_link_results_list)
-            for row in similarity_link_results_list:
-                pass
+    # Define the column names
+    fieldnames = ["similarity_score", "url_link", "source_link", "outgoing_links_list", "webpage_vector"]
 
+    # Create the CSV file with column names
+    with open(file_path, mode='w', newline='') as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writeheader()
+    print(f"CSV file '{file_path}' created successfully!")
 
-    except:
-        print('something went wrong with writing the file')
+def update_csv_file(file_path, data):
+    """
+    Updates the CSV file with new data. If CSV file does not exists, it will be created by invoking create_csv_file
+
+    Args:
+        file_path (str): File path of the CSV file.
+        data (dict): Data to be written to the CSV file. Should be a dictionary with keys as column names and values
+                     as data to be written. In form :["similarity_score", "url_link", "source_link", "outgoing_links_list", "webpage_vector"]
+
+    Returns:
+        None
+    """
+    # Check if the file path exists
+    if not os.path.exists(file_path):
+        create_csv_file(file_path)
+
+    # Append new data to the CSV file
+    with open(file_path, mode='a', newline='') as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=data.keys())
+        writer.writerow(data)
+    print(f"Data updated in CSV file '{file_path}' successfully!")
 
 
 
 
 
 if __name__ == "__main__":
-    page_links = list(get_links_html("https://en.wikipedia.org/wiki/Absorptive_capacity"))
-    print(similarity_query_links(page_links))
+    query_words = ['absorptive capacity', 'assimilation', 'acquisition', 'transformation']
+
+    origin_query = "https://en.wikipedia.org/wiki/Absorptive_capacity"
+    outgoing_page_links = list(get_links_html(origin_query))
+    #results_of_tf_idf_to_dict()
+    print(similarity_check_query_with_linklist(query_words, outgoing_page_links ))
     #print(fetch_important_text_in_link('https://www.hellonewday.nl'))
-    write_csv(page_links)
+    data_dict = {
+        "similarity_score": 0.9,
+        "url_link": "https://example.com/page1",
+        "source_link": "https://example.com/",
+        "outgoing_links_list": ["https://example.com/page2", "https://example.com/page3"],
+        "webpage_vector": [0.1, 0.2, 0.3, 0.4]
+    }
+    #update_csv_file("data/similarity_data.csv",data_dict)
