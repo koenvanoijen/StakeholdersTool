@@ -8,6 +8,7 @@ from nltk.stem import SnowballStemmer
 from nltk.stem import WordNetLemmatizer
 
 ##### Uncomment when not yet downloaded #######
+#nltk.download() #if you don't care about downloading too much packages.
 # nltk.download('PorterStemmer')
 # nltk.download('stopwords')
 # nltk.download('wordnet')

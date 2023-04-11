@@ -4,24 +4,33 @@ import re
 import Preprocess
 import tf_idf
 import csv_writer
+import urllib
+import url_determiner
+
 def get_links_html(url):
     """
-    parameter : link in string_format
-    get all the links of a webpage
-    returns only unique values in the list
+    parameter : link in string_format --> this is the source url
+    output:
+        return all the links on the webpage in a set
 
     """
-    page = requests.get(url)
+    page = requests.get(url, allow_redirects=True)
+    source_url = page.url
     data = page.text
     soup = BeautifulSoup(data,features = 'lxml')
     links = set()
+
+
     for link in soup.find_all('a', href = True):
 
         url_link = link.get('href')
-        if "https" in url_link:
-            links.add(url_link)
+        url_link_final_redirect = url_determiner.get_correct_url(source_url=source_url, target_url=url_link )
+
+        if "https" in url_link_final_redirect:
+            links.add(url_link_final_redirect)
     print(str(links))
     return set(link for link in links if 'https' in link)
+
 
 def retrieve_webpage(url):
     """
@@ -115,6 +124,9 @@ def results_of_tf_idf_to_dict(similarity_score, page_url, parent_url,out_going_l
 
 def execution_web_page_one_loop_cycle(query, link_to_check,file_path, parent_url = 'None', write_to_csv = True):
     """
+    task:
+        perform the similarity test with the query and the text. It outputs the results in a dictionairy shape
+
         input:
             query = words to be vectorized and compared with text on url's html page
             link_to_check = link to be evaluated
@@ -131,6 +143,7 @@ def execution_web_page_one_loop_cycle(query, link_to_check,file_path, parent_url
                                         - out_going_link_list_with_similarity= similarity_link_list,
                                         - webpage_vector= text_vector,
                                         - query_list= query)
+                    return "link_unvalid" if the preproccesed_text is not valid with is_not_valid_html_text
 
     """
     # Create the possibility to give weights to certain search queries
@@ -198,7 +211,7 @@ def loop_through_webpages(query, file_path, url_link):
             evaluated_links.update(similarity_dict_one_page["out_going_links_set"])
             print(similarity_dict_one_page)
             similarity_dict_full[link] = similarity_dict_one_page
-    return similarity_dict_full
+    return similarity_dict_full, evaluated_links
 
 if __name__ == "__main__":
     query_words = ['absorptive capacity', 'assimilation', 'acquisition', 'transformation']
@@ -206,6 +219,10 @@ if __name__ == "__main__":
 
     dictionairy_total = loop_through_webpages(query=query_words, url_link=origin_query, file_path="similarity_data.csv")
     print("all", dictionairy_total)
+    #linkset = get_links_html("https://api.semanticscholar.org/CorpusID:153462623")
+
+
+
     """
     similarity_score = tf_idf.scoreAnalysis(tf_idf.cosine(text, query)[0], weights)
     results_of_tf_idf_to_dict()
