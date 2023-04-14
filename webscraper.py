@@ -7,8 +7,9 @@ import csv_writer
 import urllib
 import url_determiner
 
-def get_links_html(url):
+def get_all_links_on_html_page(url):
     """
+
     parameter : link in string_format --> this is the source url
     output:
         return all the links on the webpage in a set
@@ -20,14 +21,14 @@ def get_links_html(url):
     soup = BeautifulSoup(data,features = 'lxml')
     links = set()
 
-
     for link in soup.find_all('a', href = True):
 
         url_link = link.get('href')
-        url_link_final_redirect = url_determiner.get_correct_url(source_url=source_url, target_url=url_link )
+        if url_link[0] == "/" or "https" in url_link:
+            url_link_final_redirect = url_determiner.get_correct_url(source_url=source_url, target_url=url_link )
 
-        if "https" in url_link_final_redirect:
-            links.add(url_link_final_redirect)
+            if "https" in url_link_final_redirect:
+                links.add(url_link_final_redirect)
     print(str(links))
     return set(link for link in links if 'https' in link)
 
@@ -155,8 +156,14 @@ def execution_web_page_one_loop_cycle(query, link_to_check,file_path, parent_url
 
     cosine_similarity_text_and_query, text_vector = tf_idf.cosine(preprocessed_text, query)
     similarity_score_text_query = tf_idf.scoreAnalysis(cosine_similarity_text_and_query, weights)
-    link_list= list(get_links_html(link_to_check))
-    similarity_link_list = similarity_check_query_with_linklist(query,link_list)
+    link_set= set(get_all_links_on_html_page(link_to_check))
+
+    #Create a filter that groups the link_list so that it only has the links that are unique
+    unique_link_set = url_determiner.get_only_unique_links(link_set)
+
+    print("link_set=", link_set)
+    print("unique_link_set=",unique_link_set)
+    similarity_link_list = similarity_check_query_with_linklist(query,unique_link_set)
     results_dict = results_of_tf_idf_to_dict(similarity_score=similarity_score_text_query,
                                              page_url=link_to_check, parent_url=parent_url,
                                              out_going_links_set = set(link[1] for link in similarity_link_list),
@@ -198,12 +205,15 @@ def loop_through_webpages(query, file_path, url_link):
     """
     similarity_dict_one_page = execution_web_page_one_loop_cycle(query, url_link, file_path)
     relevant_similarity_link_list = filter_new_paths_threshold(similarity_dict_one_page["out_going_links_list_with_similarity"])
+    print(relevant_similarity_link_list)
     evaluated_links = set(url_link)
 
     similarity_dict_full = {url_link: similarity_dict_one_page}
 
     for score, link in similarity_dict_one_page["out_going_links_list_with_similarity"]:
         if (score, link) in relevant_similarity_link_list:
+            if link in similarity_dict_full: #skips the link if it is already present in the similarity_dict_one_page
+                continue
             similarity_dict_one_page = execution_web_page_one_loop_cycle(query=query, link_to_check=link,file_path=file_path, parent_url = url_link, write_to_csv = True)
             if similarity_dict_one_page == "link_unvalid":
                 continue
@@ -219,7 +229,7 @@ if __name__ == "__main__":
 
     dictionairy_total = loop_through_webpages(query=query_words, url_link=origin_query, file_path="similarity_data.csv")
     print("all", dictionairy_total)
-    #linkset = get_links_html("https://api.semanticscholar.org/CorpusID:153462623")
+    #linkset = get_all_links_on_html_page("https://api.semanticscholar.org/CorpusID:153462623")
 
 
 
@@ -227,7 +237,7 @@ if __name__ == "__main__":
     similarity_score = tf_idf.scoreAnalysis(tf_idf.cosine(text, query)[0], weights)
     results_of_tf_idf_to_dict()
     
-    outgoing_page_links = list(get_links_html(origin_query))
+    outgoing_page_links = list(get_all_links_on_html_page(origin_query))
     #results_of_tf_idf_to_dict()
     print(similarity_check_query_with_linklist(query_words, outgoing_page_links ))
     #print(fetch_important_text_in_webpage('https://www.hellonewday.nl'))
