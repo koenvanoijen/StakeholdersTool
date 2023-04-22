@@ -14,7 +14,7 @@ from nltk.stem import WordNetLemmatizer
 # nltk.download('wordnet')
 # nltk.download('averaged_perceptron_tagger')
 ##############
-import NER
+#import NER
 
 
 def tokenize(text):

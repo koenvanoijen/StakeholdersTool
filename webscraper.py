@@ -71,7 +71,9 @@ def fetch_important_text_in_webpage(link):
         text_preprocessed = Preprocess.preproccess(text_in_website)
         text_preprocessed_joined = " ".join(text_preprocessed)
         return text_preprocessed_joined
-    except:
+
+    except Exception as e:
+        print(f"!@!@!@!@ Error fetching content from URL: {link}. Error: {e}")
         return ""
 
 def is_not_valid_html_text(text):
@@ -192,7 +194,7 @@ def filter_new_paths_threshold(link_list_similarity_score, threshold = 0.4):
     return explorable_links_similarity
 
 
-def loop_through_webpages(query, file_path, url_link):
+def loop_through_webpages(similarity_dict_one_page,similarity_dict_full, query, file_path, url_link):
     """
     iterates over the links in the web_page then it does a similarity check with the query and the new webpages
     input:
@@ -203,7 +205,6 @@ def loop_through_webpages(query, file_path, url_link):
     output:
         similarity_dict
     """
-    similarity_dict_one_page = execution_web_page_one_loop_cycle(query, url_link, file_path)
     relevant_similarity_link_list = filter_new_paths_threshold(similarity_dict_one_page["out_going_links_list_with_similarity"])
     print(relevant_similarity_link_list)
     evaluated_links = set(url_link)
@@ -223,14 +224,190 @@ def loop_through_webpages(query, file_path, url_link):
             similarity_dict_full[link] = similarity_dict_one_page
     return similarity_dict_full, evaluated_links
 
+def return_similarity_dict_by_loop_through_links_on_webpage(similarity_dict_one_page,similarity_dict_full, query, file_path, parent_url = None):
+    """
+    iterates over the links in the web_page then it does a similarity check with the query and the new webpages
+    input:
+        query = list of words to compare with html text in url_link
+        file_path = location and filename ot be saved e.g. similarity_data.csv or users/mehdi/data/similarity_data.csv
+        url_link = link of which text should be evaluated
+
+    output:
+        similarity_dict
+    """
+    relevant_similarity_link_list = filter_new_paths_threshold(similarity_dict_one_page["out_going_links_list_with_similarity"])
+    print(relevant_similarity_link_list)
+    evaluated_links = set()
+    for score, link in similarity_dict_one_page["out_going_links_list_with_similarity"]:
+        if (score, link) in relevant_similarity_link_list:
+            if link in similarity_dict_full: #skips the link if it is already present in the similarity_dict_one_page
+                continue
+            newest_similarity_dict_this_loop = execution_web_page_one_loop_cycle(query=query, link_to_check=link,file_path=file_path, parent_url = parent_url, write_to_csv = True)
+            if newest_similarity_dict_this_loop == "link_unvalid":
+                continue
+            evaluated_links.update(link)
+            #evaluated_links.update(similarity_dict_one_page["out_going_links_set"])
+            print(newest_similarity_dict_this_loop)
+            similarity_dict_full[link] = newest_similarity_dict_this_loop
+    return similarity_dict_full
+
+def get_starting_url():
+    while True:
+        starting_url = input("Please enter the URL to start scraping on: ")
+
+        try:
+            requests.get(starting_url, allow_redirects=True)
+            break
+        except:
+            print('Give me a valid URL! Include the https://www.')
+
+    return starting_url
+
+
+def get_starting_queries():
+    starting_queries = []
+
+    while True:
+        query = str(input('Give me a word for the query, if you are done: press enter'))
+        if query == "":
+            break
+        else:
+            starting_queries.append(query)
+            print(starting_queries)
+
+    return starting_queries
+
+
+def get_loop_depth():
+    while True:
+        loops_to_execute_crawler = input('How deep should the crawler go? Give an integer: ')
+
+        try:
+            loops_to_execute_crawler = int(loops_to_execute_crawler)
+
+            if loops_to_execute_crawler > 0:
+                break
+            else:
+                print('Give me a positive non-zero integer')
+        except:
+            print('Give me a valid integer!')
+
+    return loops_to_execute_crawler
+
+
+def get_file_path():
+    while True:
+        file_path = input('To what path should I save the results? It can be an existing file, it must include .csv: ')
+
+        if ".csv" in file_path:
+            break
+        else:
+            continue
+
+    return file_path
+
+
+def start_webscraper():
+    starting_url = "https://api.semanticscholar.org/CorpusID:153462623 "#get_starting_url()
+    starting_queries = ['absorptive capacity', 'assimilation', 'acquisition', 'transformation']#get_starting_queries()
+    loops_to_execute_crawler = get_loop_depth()
+    file_path = "similarity_data.csv"#get_file_path()
+
+    similarity_dict_one_page = execution_web_page_one_loop_cycle(starting_queries, starting_url, file_path, parent_url='None', write_to_csv=True)
+
+    similarity_dict_full = {starting_url: similarity_dict_one_page}
+    print("similarity_dict_one_page", similarity_dict_one_page)
+    for loop in range(loops_to_execute_crawler):
+        print('We started looping through the webpages at loop:', loop)
+        similarity_dict_full = return_similarity_dict_by_loop_through_links_on_webpage(
+            similarity_dict_one_page=similarity_dict_one_page,
+            similarity_dict_full=similarity_dict_full,
+            query=starting_queries,
+            file_path=file_path,
+            parent_url=starting_url
+        )
+
+
+
+def start_webscrapers():
+    """
+    starts the webscraper
+    asks the user for the starting url and query
+    not yet updated the query to be bug proof
+
+    """
+    starting_url = ""
+    starting_queries = []
+    loops_to_execute_crawler = int
+    file_path = str()
+    while True:
+        starting_url = input("please enter url to start scraping on")
+
+        try:
+            requests.get(starting_url, allow_redirects=True)
+            print('hi')
+            break
+        except:
+            print('give me a valid url! include the https://www.')
+
+    while True:
+        query = str(input('give me a word for in the query, if you are done: press enter'))
+        if query == "":
+            break
+        else:
+            try:
+                starting_queries.append(query)
+                print(starting_queries)
+            except:
+                print('please enter a valid query word')
+    while True:
+        loops_to_execute_crawler = input('how deep should the crawler go? give an integer')
+        try:
+            loops_to_execute_crawler = int(loops_to_execute_crawler)
+
+            if loops_to_execute_crawler > 0:
+                break
+            else:
+                print('give me a positive non zero integer')
+        except:
+            print('give me a valid integer!')
+
+    while True:
+        file_path = input('to what path should I save the results? It can be an existing file, it must include .csv')
+
+        if ".csv" in file_path:
+            break
+        else:
+            continue
+
+    similarity_dict_one_page = execution_web_page_one_loop_cycle(starting_queries, starting_url, file_path, parent_url='None', write_to_csv=True)
+
+    similarity_dict_full = {starting_url: similarity_dict_one_page}
+    print("similarity_dict_one_page", similarity_dict_one_page)
+    for loop in range(loops_to_execute_crawler):
+        print('we started looping through the webapges at loop:', loop)
+        similarity_dict_full = return_similarity_dict_by_loop_through_links_on_webpage(
+            similarity_dict_one_page = similarity_dict_one_page,
+            similarity_dict_full = similarity_dict_full,
+            query= starting_queries,
+            file_path = file_path,
+            parent_url= starting_url
+        )
+
+
+
+
+
 if __name__ == "__main__":
-    query_words = ['absorptive capacity', 'assimilation', 'acquisition', 'transformation']
-    origin_query = "https://en.wikipedia.org/wiki/Absorptive_capacity"
+    #query_words = ['absorptive capacity', 'assimilation', 'acquisition', 'transformation']
+    #origin_query = "https://en.wikipedia.org/wiki/Absorptive_capacity"
 
-    dictionairy_total = loop_through_webpages(query=query_words, url_link=origin_query, file_path="similarity_data.csv")
-    print("all", dictionairy_total)
+    #dictionairy_total = loop_through_webpages(query=query_words, url_link=origin_query, file_path="similarity_data.csv")
+    #print("all", dictionairy_total)
     #linkset = get_all_links_on_html_page("https://api.semanticscholar.org/CorpusID:153462623")
+    start_webscraper()
 
+    #similarity_dict_one_page = execution_web_page_one_loop_cycle(query_words, origin_query, "similarity_data.csv", parent_url='None', write_to_csv=True)
 
 
     """
