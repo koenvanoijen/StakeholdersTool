@@ -328,6 +328,24 @@ def start_webscraper():
         )
 
 
+class Webscraper:
+    def __init__(self):
+
+        self.starting_url = "https://en.wikipedia.org/wiki/Absorptive_capacity"
+        self.starting_queries = ['absorptive capacity', 'assimilation', 'acquisition', 'transformation']
+        self.loops_to_execute = 3
+        self.file_path_save = "similarity_data.csv"
+
+        self.starting_data = input("Do you want to give your own data? Answer with True or False: ").lower()
+
+        if self.starting_data == "true":
+            self.starting_url = input("Enter the starting URL: ")
+            self.starting_queries = input("Enter the starting queries separated by commas: ").split(',')
+            self.loops_to_execute = int(input("Enter the number of loops to execute: "))
+            self.file_path_save = input("Enter the file path to save the output: ")
+
+
+
 
 def start_webscrapers():
     """
