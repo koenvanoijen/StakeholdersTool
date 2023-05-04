@@ -13,7 +13,7 @@ class Webscraper:
     Class that starts the webscraper, it has default values for the link to start but it can be overwritten
 
     """
-    def __init__(self, write_to_csv= True):
+    def __init__(self, write_to_csv= True, threshold=0.4):
 
         self.starting_url = "https://en.wikipedia.org/wiki/Absorptive_capacity"
         self.starting_query = ['absorptive capacity', 'assimilation', 'acquisition', 'transformation']
@@ -23,7 +23,9 @@ class Webscraper:
         self.write_to_csv = write_to_csv
         self.scanned_pages = list()
         self.evaluated_links = set()
-        self.links_to_visit = list()
+        self.links_to_visit_with_parent = list()
+        self.threshold = threshold
+        self.webpage_object_list = [1 for num in range(self.loops_to_execute*2)]
 
         self.starting_data = input("Do you want to give your own data? Answer with True or False: ").lower()
 
@@ -43,17 +45,54 @@ class Webscraper:
             except:
                 print('give me a valid url! include the https://www.')
 
+
     def update_webscraper(self, webpage_object):
+        """
+        adds the pages that are scanned
+        add the links that have been tf_idf'ed
+        removes the scanned_pages from the links to visit --> this can be improved by removing the links that are similar
+        """
+        print("links_to_visit_with_parent = ",self.links_to_visit_with_parent)
         self.scanned_pages.append(webpage_object.link_to_check)
-        self.evaluated_links.add(webpage_object.unique_links_on_webpage)
+        [self.evaluated_links.add(unique_link) for unique_link in webpage_object.unique_links_on_webpage]
+        self.links_to_visit_with_parent = [link for link in self.links_to_visit_with_parent if link[0][1] not in self.scanned_pages]
+
+        print("scanned_pages = ", self.scanned_pages)
+        print("evaluated_links = ", self.evaluated_links)
+        print("links_to_visit_with_parent = ", self.links_to_visit_with_parent)
 
 
     def scan_first_webpage(self):
+        """
+        scans first webpage, then puts in links to visit with their
+        similarity scores in self.links_to_visit with parent link
+        """
         self.webpage = Webpage(query=self.starting_query, link_to_check=self.starting_url)
         self.webpage.scan_webpage()
-
+        links_to_visit = webscraper.filter_new_paths_threshold(
+            self.webpage.similarity_score_unique_links_on_webpage,
+            threshold=self.threshold
+        )
+        self.links_to_visit_with_parent = [(link,self.starting_url) for link in links_to_visit]
         if self.write_to_csv:
             self.webpage.write_page_to_csv(self.file_path_save)
+        self.update_webscraper(self.webpage)
+
+    def scan_webpages_until_loops_to_execute(self):
+        for loop_number in range(self.loops_to_execute):
+            self.webpage_object_list[loop_number] = Webpage(query=self.starting_query,
+                                                            link_to_check=self.links_to_visit_with_parent[0][1],
+                                                            parent_url=self.links_to_visit_with_parent[1])
+            self.webpage_object_list[loop_number].scan_webpage()
+            links_to_visit = webscraper.filter_new_paths_threshold(
+                self.webpage_object_list[loop_number].similarity_score_unique_links_on_webpage,
+                threshold=self.threshold
+            )
+            self.links_to_visit_with_parent = [(link, self.links_to_visit_with_parent[0][1]) for link in links_to_visit]
+            if self.write_to_csv:
+                self.webpage_object_list[loop_number].write_page_to_csv(self.file_path_save)
+            self.update_webscraper(self.webpage_object_list[loop_number])
+
 
 class Webpage:
     """
@@ -108,5 +147,6 @@ if __name__ == "__main__":
     print("hi")
     start_page = Webscraper()
     start_page.scan_first_webpage()
+    start_page.scan_webpages_until_loops_to_execute()
 
 
