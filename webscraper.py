@@ -339,12 +339,22 @@ class Webscraper:
         self.starting_data = input("Do you want to give your own data? Answer with True or False: ").lower()
 
         if self.starting_data == "true":
-            self.starting_url = input("Enter the starting URL: ")
+
+
+            self.starting_url = Webscraper.get_starting_url()
             self.starting_queries = input("Enter the starting queries separated by commas: ").split(',')
             self.loops_to_execute = int(input("Enter the number of loops to execute: "))
             self.file_path_save = input("Enter the file path to save the output: ")
 
-
+    def get_starting_url():
+        while True:
+            starting_url = input("please enter url to start scraping on")
+            try:
+                requests.get(starting_url, allow_redirects=True)
+                print('hi')
+                return starting_url
+            except:
+                print('give me a valid url! include the https://www.')
 
 
 def start_webscrapers():
