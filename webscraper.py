@@ -24,6 +24,8 @@ def get_all_links_on_html_page(url):
     for link in soup.find_all('a', href = True):
 
         url_link = link.get('href')
+        if len(url_link) == 0:
+            continue
         if url_link[0] == "/" or "https" in url_link:
             url_link_final_redirect = url_determiner.get_correct_url(source_url=source_url, target_url=url_link )
 

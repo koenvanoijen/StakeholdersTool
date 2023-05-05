@@ -13,12 +13,12 @@ class Webscraper:
     Class that starts the webscraper, it has default values for the link to start but it can be overwritten
 
     """
-    def __init__(self, write_to_csv= True, threshold=0.4):
+    def __init__(self, write_to_csv= True, threshold=0.3):
 
-        self.starting_url = "https://en.wikipedia.org/wiki/Absorptive_capacity"
-        self.starting_query = ['absorptive capacity', 'assimilation', 'acquisition', 'transformation']
-        self.loops_to_execute = 3
-        self.file_path_save = "similarity_data.csv"
+        self.starting_url = "https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow"
+        self.starting_query = ['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']
+        self.loops_to_execute = 100
+        self.file_path_save = "similarity_data_AI_new.csv"
         self.webpage = None
         self.write_to_csv = write_to_csv
         self.scanned_pages = list()
@@ -55,6 +55,10 @@ class Webscraper:
         print("links_to_visit_with_parent = ",self.links_to_visit_with_parent)
         self.scanned_pages.append(webpage_object.link_to_check)
         [self.evaluated_links.add(unique_link) for unique_link in webpage_object.unique_links_on_webpage]
+        for link in self.links_to_visit_with_parent:
+            print("link[0][1]", link[0][1])
+            print("scannned_pages", self.scanned_pages)
+            print(link[0][1] not in self.scanned_pages)
         self.links_to_visit_with_parent = [link for link in self.links_to_visit_with_parent if link[0][1] not in self.scanned_pages]
 
         print("scanned_pages = ", self.scanned_pages)
@@ -80,9 +84,14 @@ class Webscraper:
 
     def scan_webpages_until_loops_to_execute(self):
         for loop_number in range(self.loops_to_execute):
+            if len(self.links_to_visit_with_parent) <=0:
+                break
+            print(self.scanned_pages)
+            print(self.links_to_visit_with_parent)
+            print("I will visit ", self.links_to_visit_with_parent[0][0][1])
             self.webpage_object_list[loop_number] = Webpage(query=self.starting_query,
-                                                            link_to_check=self.links_to_visit_with_parent[0][1],
-                                                            parent_url=self.links_to_visit_with_parent[1])
+                                                            link_to_check=self.links_to_visit_with_parent[0][0][1],
+                                                            parent_url=self.links_to_visit_with_parent[0][1])
             self.webpage_object_list[loop_number].scan_webpage()
             links_to_visit = webscraper.filter_new_paths_threshold(
                 self.webpage_object_list[loop_number].similarity_score_unique_links_on_webpage,
