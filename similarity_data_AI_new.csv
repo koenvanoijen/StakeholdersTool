@@ -358,3 +358,229 @@ similarity_score,url_link,parent_url,outgoing_links_set,out_going_links_list_wit
   (0, 90)	0.3580007778790785","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
 3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
   (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.110218686793369,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,,"{'https://goenvy.io/services/all-about-abm/', 'https://ai.googleblog.com/', 'https://meetings.hubspot.com/billy-cina', 'https://www.topbots.com/', 'http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dlinkedin', 'https://blog.goenvy.io/tag/b2b-marketing', 'https://machinelearningmastery.com/blog/', 'https://aws.amazon.com/blogs/machine-learning/', 'https://pub.towardsai.net/common-challenges-in-machine-learning-and-how-to-tackle-them-cc29c47c5f24', 'http://www.facebook.com/share.php?u=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dfacebook', 'https://www.liberties.eu/en/stories/disadvantages-of-artificial-intelligence/44289', 'https://www.instagram.com/goenvy.io/', 'https://towardsai.net/ai/machine-learning', 'https://www.topbots.com/leading-nlp-language-models-2020/', 'https://blog.goenvy.io/tag/startup-marketing', 'https://goenvy.io/contact', 'https://goenvy.io/careers/', 'https://research.aimultiple.com/advantages-of-ai/', 'https://openai.com/blog/codex-apps/', 'https://goenvy.io/services/inbound-marketing/', 'https://towardsai.net/p/machine-learning/ml-algorithms-from-scratch-in-python', 'https://goenvy.io/resource_type/e-books/', 'https://goenvy.io/resource_type/videos/', 'https://goenvy.io/services/revops/', 'https://twitter.com/mktgenvy', 'https://wisdom.tech/blog/2020/11/an-ai-winter-may-be-inevitable-what-we-should-fear-more-an-ai-ice-age/', 'https://openai.com/', 'https://blog.goenvy.io', 'https://blog.goenvy.io/top-10-cloud-computing-blogs-to-follow', 'https://goenvy.io/events/', 'https://goenvy.io/privacy-policy/', 'https://goenvy.io/about-us/', 'https://goenvy.io/services/', 'https://openai.com/blog/best-practices-for-deploying-language-models/', 'https://goenvy.io/services/startup-marketing/', 'https://goenvy.io/pricing/', 'https://blog.goenvy.io/9-must-read-uk-cybersecurity-blogs', 'https://goenvy.io/services/ppc-lead-generation/', 'https://bair.berkeley.edu/blog/', 'https://goenvy.io/services/hubspot-implementation-and-onboarding/', 'https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&source=tweetbutton&text=', 'https://www.facebook.com/GoEnvy', 'https://goenvy.io/resource_type/case-studies/', 'https://goenvy.io/resources/', 'https://www.topbots.com/marketing-ai-research-attribution/', 'https://blog.goenvy.io/from-vanilla-to-chunky-monkey-tools-to-sweeten-up-your-content-a-marketing-envy-summer-special', 'https://goenvy.io/services/b2b-cyber-security-marketing/', 'https://www.linkedin.com/company/goenvy/', 'https://goenvy.io', 'https://sproutsocial.com/glossary/marketing-funnel/', 'https://contentmarketinginstitute.com/what-is-content-marketing/', 'https://goenvy.io/services/marketing-operations/', 'https://www.youtube.com/@Get_Envy', 'https://news.mit.edu/2022/machine-learning-harnessed-extreme-computing-aids-fusion-energy-development-0427', 'https://goenvy.io/services/b2b-creative-and-message-testing/', 'https://wisdom.tech/blogs/', 'https://marketingenvy.com/services/inbound-tech-marketing/', 'https://goenvy.io/contact/', 'https://news.mit.edu/topic/artificial-intelligence2', 'https://www.linkedin.com/in/jasonbrownlee/?originalSubdomain=au', 'https://goenvy.io/services/marketing-automation/', 'https://www.marktechpost.com/'}","[(2.5654147488540784, 'https://towardsai.net/p/machine-learning/ml-algorithms-from-scratch-in-python'), (2.3420236179137217, 'https://towardsai.net/ai/machine-learning'), (2.1324108271964386, 'https://research.aimultiple.com/advantages-of-ai/'), (1.6271459425797652, 'https://www.liberties.eu/en/stories/disadvantages-of-artificial-intelligence/44289'), (1.4596087331426828, 'https://aws.amazon.com/blogs/machine-learning/'), (1.450545988701718, 'https://www.marktechpost.com/'), (0.9284766908852593, 'https://blog.goenvy.io/tag/startup-marketing'), (0.9053574604251857, 'https://openai.com/'), (0.7537783614444094, 'https://ai.googleblog.com/'), (0.6810092530676158, 'https://pub.towardsai.net/common-challenges-in-machine-learning-and-how-to-tackle-them-cc29c47c5f24'), (0.4995838534443406, 'https://news.mit.edu/topic/artificial-intelligence2'), (0.2860647838453115, 'https://openai.com/blog/codex-apps/'), (0.2420299468734113, 'https://bair.berkeley.edu/blog/'), (0.14913749656797337, 'https://openai.com/blog/best-practices-for-deploying-language-models/'), (0.12562972690740135, 'https://blog.goenvy.io/9-must-read-uk-cybersecurity-blogs'), (0.10903109355965859, 'https://blog.goenvy.io/top-10-cloud-computing-blogs-to-follow'), (0.0, 'https://www.youtube.com/@Get_Envy'), (0.0, 'https://www.topbots.com/marketing-ai-research-attribution/'), (0.0, 'https://www.topbots.com/leading-nlp-language-models-2020/'), (0.0, 'https://www.topbots.com/'), (0.0, 'https://www.instagram.com/goenvy.io/'), (0.0, 'https://www.facebook.com/GoEnvy'), (0.0, 'https://wisdom.tech/blogs/'), (0.0, 'https://wisdom.tech/blog/2020/11/an-ai-winter-may-be-inevitable-what-we-should-fear-more-an-ai-ice-age/'), (0.0, 'https://twitter.com/mktgenvy'), (0.0, 'https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&source=tweetbutton&text='), (0.0, 'https://sproutsocial.com/glossary/marketing-funnel/'), (0.0, 'https://news.mit.edu/2022/machine-learning-harnessed-extreme-computing-aids-fusion-energy-development-0427'), (0.0, 'https://marketingenvy.com/services/inbound-tech-marketing/'), (0.0, 'https://goenvy.io/services/startup-marketing/'), (0.0, 'https://goenvy.io/services/revops/'), (0.0, 'https://goenvy.io/services/ppc-lead-generation/'), (0.0, 'https://goenvy.io/services/marketing-operations/'), (0.0, 'https://goenvy.io/services/marketing-automation/'), (0.0, 'https://goenvy.io/services/inbound-marketing/'), (0.0, 'https://goenvy.io/services/hubspot-implementation-and-onboarding/'), (0.0, 'https://goenvy.io/services/b2b-cyber-security-marketing/'), (0.0, 'https://goenvy.io/services/b2b-creative-and-message-testing/'), (0.0, 'https://goenvy.io/services/all-about-abm/'), (0.0, 'https://goenvy.io/services/'), (0.0, 'https://goenvy.io/resources/'), (0.0, 'https://goenvy.io/resource_type/videos/'), (0.0, 'https://goenvy.io/resource_type/e-books/'), (0.0, 'https://goenvy.io/resource_type/case-studies/'), (0.0, 'https://goenvy.io/privacy-policy/'), (0.0, 'https://goenvy.io/pricing/'), (0.0, 'https://goenvy.io/events/'), (0.0, 'https://goenvy.io/contact/'), (0.0, 'https://goenvy.io/contact'), (0.0, 'https://goenvy.io/careers/'), (0.0, 'https://goenvy.io/about-us/'), (0.0, 'https://contentmarketinginstitute.com/what-is-content-marketing/'), (0.0, 'https://blog.goenvy.io/tag/b2b-marketing'), (0.0, 'https://blog.goenvy.io/from-vanilla-to-chunky-monkey-tools-to-sweeten-up-your-content-a-marketing-envy-summer-special'), (0.0, 'https://blog.goenvy.io'), (0.0, 'http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dlinkedin'), (0.0, 'http://www.facebook.com/share.php?u=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dfacebook')]","  (0, 182)	0.02439387205328132
+  (0, 380)	0.01219693602664066
+  (0, 211)	0.01219693602664066
+  (0, 126)	0.01219693602664066
+  (0, 350)	0.01219693602664066
+  (0, 370)	0.01219693602664066
+  (0, 238)	0.01219693602664066
+  (0, 59)	0.01219693602664066
+  (0, 401)	0.01219693602664066
+  (0, 81)	0.01219693602664066
+  (0, 383)	0.01219693602664066
+  (0, 70)	0.01219693602664066
+  (0, 371)	0.01219693602664066
+  (0, 391)	0.01219693602664066
+  (0, 328)	0.01219693602664066
+  (0, 233)	0.01219693602664066
+  (0, 51)	0.01219693602664066
+  (0, 426)	0.01219693602664066
+  (0, 327)	0.01219693602664066
+  (0, 417)	0.01219693602664066
+  (0, 319)	0.01219693602664066
+  (0, 5)	0.01219693602664066
+  (0, 115)	0.01219693602664066
+  (0, 330)	0.01219693602664066
+  (0, 408)	0.02439387205328132
+  :	:
+  (0, 39)	0.02439387205328132
+  (0, 174)	0.01219693602664066
+  (0, 179)	0.03659080807992198
+  (0, 241)	0.03659080807992198
+  (0, 234)	0.01219693602664066
+  (0, 120)	0.01219693602664066
+  (0, 48)	0.5488621211988297
+  (0, 289)	0.01219693602664066
+  (0, 86)	0.01219693602664066
+  (0, 96)	0.01219693602664066
+  (0, 10)	0.03659080807992198
+  (0, 294)	0.02439387205328132
+  (0, 11)	0.01219693602664066
+  (0, 87)	0.01219693602664066
+  (0, 71)	0.02439387205328132
+  (0, 389)	0.01219693602664066
+  (0, 306)	0.03659080807992198
+  (0, 184)	0.0609846801332033
+  (0, 29)	0.0609846801332033
+  (0, 308)	0.02439387205328132
+  (0, 134)	0.09757548821312528
+  (0, 50)	0.04878774410656264
+  (0, 12)	0.6220437373586737
+  (0, 166)	0.02439387205328132
+  (0, 0)	0.09757548821312528","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.110218686793369,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,,"{'https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&source=tweetbutton&text=', 'https://goenvy.io/services/inbound-marketing/', 'https://goenvy.io/services/startup-marketing/', 'https://www.facebook.com/GoEnvy', 'https://blog.goenvy.io/tag/b2b-marketing', 'http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dlinkedin', 'https://wisdom.tech/blogs/', 'https://news.mit.edu/topic/artificial-intelligence2', 'https://goenvy.io/services/marketing-automation/', 'https://blog.goenvy.io/from-vanilla-to-chunky-monkey-tools-to-sweeten-up-your-content-a-marketing-envy-summer-special', 'https://goenvy.io/services/b2b-creative-and-message-testing/', 'https://goenvy.io/services/b2b-cyber-security-marketing/', 'https://research.aimultiple.com/advantages-of-ai/', 'https://www.topbots.com/marketing-ai-research-attribution/', 'https://goenvy.io/services/hubspot-implementation-and-onboarding/', 'https://openai.com/blog/codex-apps/', 'https://goenvy.io/about-us/', 'https://goenvy.io/resource_type/case-studies/', 'https://news.mit.edu/2022/machine-learning-harnessed-extreme-computing-aids-fusion-energy-development-0427', 'https://sproutsocial.com/glossary/marketing-funnel/', 'https://goenvy.io', 'https://meetings.hubspot.com/billy-cina', 'https://goenvy.io/resource_type/videos/', 'https://blog.goenvy.io/tag/startup-marketing', 'https://twitter.com/mktgenvy', 'https://goenvy.io/contact/', 'https://www.topbots.com/', 'https://blog.goenvy.io/top-10-cloud-computing-blogs-to-follow', 'https://www.linkedin.com/company/goenvy/', 'https://contentmarketinginstitute.com/what-is-content-marketing/', 'https://blog.goenvy.io', 'https://goenvy.io/resources/', 'https://www.linkedin.com/in/jasonbrownlee/?originalSubdomain=au', 'https://wisdom.tech/blog/2020/11/an-ai-winter-may-be-inevitable-what-we-should-fear-more-an-ai-ice-age/', 'https://www.youtube.com/@Get_Envy', 'https://goenvy.io/services/revops/', 'https://towardsai.net/ai/machine-learning', 'https://goenvy.io/pricing/', 'https://goenvy.io/services/ppc-lead-generation/', 'https://goenvy.io/careers/', 'https://aws.amazon.com/blogs/machine-learning/', 'https://goenvy.io/services/', 'https://goenvy.io/contact', 'https://blog.goenvy.io/9-must-read-uk-cybersecurity-blogs', 'https://openai.com/blog/best-practices-for-deploying-language-models/', 'https://www.topbots.com/leading-nlp-language-models-2020/', 'https://goenvy.io/services/marketing-operations/', 'https://www.liberties.eu/en/stories/disadvantages-of-artificial-intelligence/44289', 'https://goenvy.io/privacy-policy/', 'https://goenvy.io/services/all-about-abm/', 'https://goenvy.io/events/', 'https://openai.com/', 'https://bair.berkeley.edu/blog/', 'https://www.marktechpost.com/', 'https://goenvy.io/resource_type/e-books/', 'https://towardsai.net/p/machine-learning/ml-algorithms-from-scratch-in-python', 'https://pub.towardsai.net/common-challenges-in-machine-learning-and-how-to-tackle-them-cc29c47c5f24', 'https://www.instagram.com/goenvy.io/', 'https://ai.googleblog.com/', 'https://marketingenvy.com/services/inbound-tech-marketing/', 'https://machinelearningmastery.com/blog/', 'http://www.facebook.com/share.php?u=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dfacebook'}","[(2.5654147488540784, 'https://towardsai.net/p/machine-learning/ml-algorithms-from-scratch-in-python'), (2.3420236179137217, 'https://towardsai.net/ai/machine-learning'), (2.1324108271964386, 'https://research.aimultiple.com/advantages-of-ai/'), (1.6271459425797652, 'https://www.liberties.eu/en/stories/disadvantages-of-artificial-intelligence/44289'), (1.4596087331426828, 'https://aws.amazon.com/blogs/machine-learning/'), (1.450545988701718, 'https://www.marktechpost.com/'), (0.9284766908852593, 'https://blog.goenvy.io/tag/startup-marketing'), (0.9053574604251857, 'https://openai.com/'), (0.7537783614444094, 'https://ai.googleblog.com/'), (0.7192224328345681, 'https://pub.towardsai.net/common-challenges-in-machine-learning-and-how-to-tackle-them-cc29c47c5f24'), (0.4995838534443406, 'https://news.mit.edu/topic/artificial-intelligence2'), (0.2860647838453115, 'https://openai.com/blog/codex-apps/'), (0.2420299468734113, 'https://bair.berkeley.edu/blog/'), (0.14913749656797337, 'https://openai.com/blog/best-practices-for-deploying-language-models/'), (0.12562972690740135, 'https://blog.goenvy.io/9-must-read-uk-cybersecurity-blogs'), (0.10903109355965859, 'https://blog.goenvy.io/top-10-cloud-computing-blogs-to-follow'), (0.0, 'https://www.youtube.com/@Get_Envy'), (0.0, 'https://www.topbots.com/marketing-ai-research-attribution/'), (0.0, 'https://www.topbots.com/leading-nlp-language-models-2020/'), (0.0, 'https://www.topbots.com/'), (0.0, 'https://www.instagram.com/goenvy.io/'), (0.0, 'https://www.facebook.com/GoEnvy'), (0.0, 'https://wisdom.tech/blogs/'), (0.0, 'https://wisdom.tech/blog/2020/11/an-ai-winter-may-be-inevitable-what-we-should-fear-more-an-ai-ice-age/'), (0.0, 'https://twitter.com/mktgenvy'), (0.0, 'https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&source=tweetbutton&text='), (0.0, 'https://sproutsocial.com/glossary/marketing-funnel/'), (0.0, 'https://news.mit.edu/2022/machine-learning-harnessed-extreme-computing-aids-fusion-energy-development-0427'), (0.0, 'https://marketingenvy.com/services/inbound-tech-marketing/'), (0.0, 'https://goenvy.io/services/startup-marketing/'), (0.0, 'https://goenvy.io/services/revops/'), (0.0, 'https://goenvy.io/services/ppc-lead-generation/'), (0.0, 'https://goenvy.io/services/marketing-operations/'), (0.0, 'https://goenvy.io/services/marketing-automation/'), (0.0, 'https://goenvy.io/services/inbound-marketing/'), (0.0, 'https://goenvy.io/services/hubspot-implementation-and-onboarding/'), (0.0, 'https://goenvy.io/services/b2b-cyber-security-marketing/'), (0.0, 'https://goenvy.io/services/b2b-creative-and-message-testing/'), (0.0, 'https://goenvy.io/services/all-about-abm/'), (0.0, 'https://goenvy.io/services/'), (0.0, 'https://goenvy.io/resources/'), (0.0, 'https://goenvy.io/resource_type/videos/'), (0.0, 'https://goenvy.io/resource_type/e-books/'), (0.0, 'https://goenvy.io/resource_type/case-studies/'), (0.0, 'https://goenvy.io/privacy-policy/'), (0.0, 'https://goenvy.io/pricing/'), (0.0, 'https://goenvy.io/events/'), (0.0, 'https://goenvy.io/contact/'), (0.0, 'https://goenvy.io/contact'), (0.0, 'https://goenvy.io/careers/'), (0.0, 'https://goenvy.io/about-us/'), (0.0, 'https://goenvy.io'), (0.0, 'https://contentmarketinginstitute.com/what-is-content-marketing/'), (0.0, 'https://blog.goenvy.io/tag/b2b-marketing'), (0.0, 'https://blog.goenvy.io/from-vanilla-to-chunky-monkey-tools-to-sweeten-up-your-content-a-marketing-envy-summer-special'), (0.0, 'http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dlinkedin'), (0.0, 'http://www.facebook.com/share.php?u=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dfacebook')]","  (0, 182)	0.02439387205328132
+  (0, 380)	0.01219693602664066
+  (0, 211)	0.01219693602664066
+  (0, 126)	0.01219693602664066
+  (0, 350)	0.01219693602664066
+  (0, 370)	0.01219693602664066
+  (0, 238)	0.01219693602664066
+  (0, 59)	0.01219693602664066
+  (0, 401)	0.01219693602664066
+  (0, 81)	0.01219693602664066
+  (0, 383)	0.01219693602664066
+  (0, 70)	0.01219693602664066
+  (0, 371)	0.01219693602664066
+  (0, 391)	0.01219693602664066
+  (0, 328)	0.01219693602664066
+  (0, 233)	0.01219693602664066
+  (0, 51)	0.01219693602664066
+  (0, 426)	0.01219693602664066
+  (0, 327)	0.01219693602664066
+  (0, 417)	0.01219693602664066
+  (0, 319)	0.01219693602664066
+  (0, 5)	0.01219693602664066
+  (0, 115)	0.01219693602664066
+  (0, 330)	0.01219693602664066
+  (0, 408)	0.02439387205328132
+  :	:
+  (0, 39)	0.02439387205328132
+  (0, 174)	0.01219693602664066
+  (0, 179)	0.03659080807992198
+  (0, 241)	0.03659080807992198
+  (0, 234)	0.01219693602664066
+  (0, 120)	0.01219693602664066
+  (0, 48)	0.5488621211988297
+  (0, 289)	0.01219693602664066
+  (0, 86)	0.01219693602664066
+  (0, 96)	0.01219693602664066
+  (0, 10)	0.03659080807992198
+  (0, 294)	0.02439387205328132
+  (0, 11)	0.01219693602664066
+  (0, 87)	0.01219693602664066
+  (0, 71)	0.02439387205328132
+  (0, 389)	0.01219693602664066
+  (0, 306)	0.03659080807992198
+  (0, 184)	0.0609846801332033
+  (0, 29)	0.0609846801332033
+  (0, 308)	0.02439387205328132
+  (0, 134)	0.09757548821312528
+  (0, 50)	0.04878774410656264
+  (0, 12)	0.6220437373586737
+  (0, 166)	0.02439387205328132
+  (0, 0)	0.09757548821312528","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.110218686793369,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,,"{'https://blog.goenvy.io', 'https://goenvy.io/services/ppc-lead-generation/', 'https://twitter.com/mktgenvy', 'https://goenvy.io/services/inbound-marketing/', 'https://wisdom.tech/blog/2020/11/an-ai-winter-may-be-inevitable-what-we-should-fear-more-an-ai-ice-age/', 'https://goenvy.io/services/startup-marketing/', 'https://towardsai.net/p/machine-learning/ml-algorithms-from-scratch-in-python', 'https://aws.amazon.com/blogs/machine-learning/', 'https://www.instagram.com/goenvy.io/', 'https://www.marktechpost.com/', 'https://goenvy.io/resource_type/case-studies/', 'https://research.aimultiple.com/advantages-of-ai/', 'https://goenvy.io/services/b2b-creative-and-message-testing/', 'https://meetings.hubspot.com/billy-cina', 'https://goenvy.io/services/marketing-automation/', 'https://goenvy.io/pricing/', 'https://goenvy.io/about-us/', 'https://goenvy.io/services/revops/', 'https://sproutsocial.com/glossary/marketing-funnel/', 'https://goenvy.io/careers/', 'https://news.mit.edu/2022/machine-learning-harnessed-extreme-computing-aids-fusion-energy-development-0427', 'https://bair.berkeley.edu/blog/', 'https://contentmarketinginstitute.com/what-is-content-marketing/', 'https://goenvy.io/services/b2b-cyber-security-marketing/', 'https://towardsai.net/ai/machine-learning', 'https://www.facebook.com/GoEnvy', 'https://blog.goenvy.io/top-10-cloud-computing-blogs-to-follow', 'https://www.topbots.com/marketing-ai-research-attribution/', 'https://goenvy.io/contact/', 'https://goenvy.io/services/all-about-abm/', 'https://openai.com/blog/codex-apps/', 'https://machinelearningmastery.com/blog/', 'https://marketingenvy.com/services/inbound-tech-marketing/', 'https://blog.goenvy.io/from-vanilla-to-chunky-monkey-tools-to-sweeten-up-your-content-a-marketing-envy-summer-special', 'https://pub.towardsai.net/common-challenges-in-machine-learning-and-how-to-tackle-them-cc29c47c5f24', 'https://ai.googleblog.com/', 'https://www.topbots.com/leading-nlp-language-models-2020/', 'https://goenvy.io/services/hubspot-implementation-and-onboarding/', 'https://www.youtube.com/@Get_Envy', 'https://openai.com/', 'https://blog.goenvy.io/tag/startup-marketing', 'https://news.mit.edu/topic/artificial-intelligence2', 'https://blog.goenvy.io/tag/b2b-marketing', 'https://www.linkedin.com/company/goenvy/', 'https://goenvy.io/services/', 'https://blog.goenvy.io/9-must-read-uk-cybersecurity-blogs', 'https://goenvy.io/events/', 'https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&source=tweetbutton&text=', 'http://www.facebook.com/share.php?u=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dfacebook', 'https://www.topbots.com/', 'https://openai.com/blog/best-practices-for-deploying-language-models/', 'https://goenvy.io/resources/', 'https://goenvy.io/resource_type/videos/', 'https://www.linkedin.com/in/jasonbrownlee/?originalSubdomain=au', 'https://wisdom.tech/blogs/', 'https://goenvy.io', 'http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dlinkedin', 'https://goenvy.io/contact', 'https://www.liberties.eu/en/stories/disadvantages-of-artificial-intelligence/44289', 'https://goenvy.io/resource_type/e-books/', 'https://goenvy.io/privacy-policy/', 'https://goenvy.io/services/marketing-operations/'}","[(2.5654147488540784, 'https://towardsai.net/p/machine-learning/ml-algorithms-from-scratch-in-python'), (2.3420236179137217, 'https://towardsai.net/ai/machine-learning'), (2.1324108271964386, 'https://research.aimultiple.com/advantages-of-ai/'), (1.6271459425797652, 'https://www.liberties.eu/en/stories/disadvantages-of-artificial-intelligence/44289'), (1.4596087331426828, 'https://aws.amazon.com/blogs/machine-learning/'), (1.450545988701718, 'https://www.marktechpost.com/'), (0.9284766908852593, 'https://blog.goenvy.io/tag/startup-marketing'), (0.9053574604251857, 'https://openai.com/'), (0.7537783614444094, 'https://ai.googleblog.com/'), (0.7192224328345681, 'https://pub.towardsai.net/common-challenges-in-machine-learning-and-how-to-tackle-them-cc29c47c5f24'), (0.4995838534443406, 'https://news.mit.edu/topic/artificial-intelligence2'), (0.2860647838453115, 'https://openai.com/blog/codex-apps/'), (0.2420299468734113, 'https://bair.berkeley.edu/blog/'), (0.14913749656797337, 'https://openai.com/blog/best-practices-for-deploying-language-models/'), (0.12562972690740135, 'https://blog.goenvy.io/9-must-read-uk-cybersecurity-blogs'), (0.10903109355965859, 'https://blog.goenvy.io/top-10-cloud-computing-blogs-to-follow'), (0.0, 'https://www.youtube.com/@Get_Envy'), (0.0, 'https://www.topbots.com/marketing-ai-research-attribution/'), (0.0, 'https://www.topbots.com/leading-nlp-language-models-2020/'), (0.0, 'https://www.topbots.com/'), (0.0, 'https://www.instagram.com/goenvy.io/'), (0.0, 'https://www.facebook.com/GoEnvy'), (0.0, 'https://wisdom.tech/blogs/'), (0.0, 'https://wisdom.tech/blog/2020/11/an-ai-winter-may-be-inevitable-what-we-should-fear-more-an-ai-ice-age/'), (0.0, 'https://twitter.com/mktgenvy'), (0.0, 'https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&source=tweetbutton&text='), (0.0, 'https://sproutsocial.com/glossary/marketing-funnel/'), (0.0, 'https://news.mit.edu/2022/machine-learning-harnessed-extreme-computing-aids-fusion-energy-development-0427'), (0.0, 'https://marketingenvy.com/services/inbound-tech-marketing/'), (0.0, 'https://goenvy.io/services/startup-marketing/'), (0.0, 'https://goenvy.io/services/revops/'), (0.0, 'https://goenvy.io/services/ppc-lead-generation/'), (0.0, 'https://goenvy.io/services/marketing-operations/'), (0.0, 'https://goenvy.io/services/marketing-automation/'), (0.0, 'https://goenvy.io/services/inbound-marketing/'), (0.0, 'https://goenvy.io/services/hubspot-implementation-and-onboarding/'), (0.0, 'https://goenvy.io/services/b2b-cyber-security-marketing/'), (0.0, 'https://goenvy.io/services/b2b-creative-and-message-testing/'), (0.0, 'https://goenvy.io/services/all-about-abm/'), (0.0, 'https://goenvy.io/services/'), (0.0, 'https://goenvy.io/resources/'), (0.0, 'https://goenvy.io/resource_type/videos/'), (0.0, 'https://goenvy.io/resource_type/e-books/'), (0.0, 'https://goenvy.io/resource_type/case-studies/'), (0.0, 'https://goenvy.io/privacy-policy/'), (0.0, 'https://goenvy.io/pricing/'), (0.0, 'https://goenvy.io/events/'), (0.0, 'https://goenvy.io/contact/'), (0.0, 'https://goenvy.io/contact'), (0.0, 'https://goenvy.io/careers/'), (0.0, 'https://goenvy.io/about-us/'), (0.0, 'https://contentmarketinginstitute.com/what-is-content-marketing/'), (0.0, 'https://blog.goenvy.io/tag/b2b-marketing'), (0.0, 'https://blog.goenvy.io/from-vanilla-to-chunky-monkey-tools-to-sweeten-up-your-content-a-marketing-envy-summer-special'), (0.0, 'https://blog.goenvy.io'), (0.0, 'http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dlinkedin'), (0.0, 'http://www.facebook.com/share.php?u=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dfacebook')]","  (0, 182)	0.02439387205328132
+  (0, 380)	0.01219693602664066
+  (0, 211)	0.01219693602664066
+  (0, 126)	0.01219693602664066
+  (0, 350)	0.01219693602664066
+  (0, 370)	0.01219693602664066
+  (0, 238)	0.01219693602664066
+  (0, 59)	0.01219693602664066
+  (0, 401)	0.01219693602664066
+  (0, 81)	0.01219693602664066
+  (0, 383)	0.01219693602664066
+  (0, 70)	0.01219693602664066
+  (0, 371)	0.01219693602664066
+  (0, 391)	0.01219693602664066
+  (0, 328)	0.01219693602664066
+  (0, 233)	0.01219693602664066
+  (0, 51)	0.01219693602664066
+  (0, 426)	0.01219693602664066
+  (0, 327)	0.01219693602664066
+  (0, 417)	0.01219693602664066
+  (0, 319)	0.01219693602664066
+  (0, 5)	0.01219693602664066
+  (0, 115)	0.01219693602664066
+  (0, 330)	0.01219693602664066
+  (0, 408)	0.02439387205328132
+  :	:
+  (0, 39)	0.02439387205328132
+  (0, 174)	0.01219693602664066
+  (0, 179)	0.03659080807992198
+  (0, 241)	0.03659080807992198
+  (0, 234)	0.01219693602664066
+  (0, 120)	0.01219693602664066
+  (0, 48)	0.5488621211988297
+  (0, 289)	0.01219693602664066
+  (0, 86)	0.01219693602664066
+  (0, 96)	0.01219693602664066
+  (0, 10)	0.03659080807992198
+  (0, 294)	0.02439387205328132
+  (0, 11)	0.01219693602664066
+  (0, 87)	0.01219693602664066
+  (0, 71)	0.02439387205328132
+  (0, 389)	0.01219693602664066
+  (0, 306)	0.03659080807992198
+  (0, 184)	0.0609846801332033
+  (0, 29)	0.0609846801332033
+  (0, 308)	0.02439387205328132
+  (0, 134)	0.09757548821312528
+  (0, 50)	0.04878774410656264
+  (0, 12)	0.6220437373586737
+  (0, 166)	0.02439387205328132
+  (0, 0)	0.09757548821312528","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.5355339059327378,https://discord.com/invite/V7RGX9XKAW,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,set(),[],"  (0, 0)	0.7071067811865475
+  (0, 1)	0.7071067811865475","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"
+3.110218686793369,https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow,,"{'https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&source=tweetbutton&text=', 'https://goenvy.io/privacy-policy/', 'https://wisdom.tech/blogs/', 'https://contentmarketinginstitute.com/what-is-content-marketing/', 'https://sproutsocial.com/glossary/marketing-funnel/', 'https://bair.berkeley.edu/blog/', 'https://blog.goenvy.io/9-must-read-uk-cybersecurity-blogs', 'https://www.liberties.eu/en/stories/disadvantages-of-artificial-intelligence/44289', 'https://goenvy.io/careers/', 'https://blog.goenvy.io/from-vanilla-to-chunky-monkey-tools-to-sweeten-up-your-content-a-marketing-envy-summer-special', 'https://goenvy.io/services/marketing-operations/', 'https://goenvy.io/services/b2b-creative-and-message-testing/', 'https://twitter.com/mktgenvy', 'https://goenvy.io/services/ppc-lead-generation/', 'https://goenvy.io/services/inbound-marketing/', 'https://blog.goenvy.io', 'https://blog.goenvy.io/tag/startup-marketing', 'https://www.topbots.com/leading-nlp-language-models-2020/', 'https://openai.com/blog/best-practices-for-deploying-language-models/', 'https://blog.goenvy.io/top-10-cloud-computing-blogs-to-follow', 'https://goenvy.io/services/revops/', 'https://goenvy.io/resource_type/e-books/', 'https://goenvy.io/services/marketing-automation/', 'http://www.facebook.com/share.php?u=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dfacebook', 'https://goenvy.io/about-us/', 'https://www.instagram.com/goenvy.io/', 'https://ai.googleblog.com/', 'https://blog.goenvy.io/tag/b2b-marketing', 'https://wisdom.tech/blog/2020/11/an-ai-winter-may-be-inevitable-what-we-should-fear-more-an-ai-ice-age/', 'https://goenvy.io/resource_type/videos/', 'https://research.aimultiple.com/advantages-of-ai/', 'https://goenvy.io/services/startup-marketing/', 'https://goenvy.io/resources/', 'https://goenvy.io/pricing/', 'https://goenvy.io', 'https://towardsai.net/ai/machine-learning', 'https://goenvy.io/services/b2b-cyber-security-marketing/', 'https://www.topbots.com/marketing-ai-research-attribution/', 'https://pub.towardsai.net/common-challenges-in-machine-learning-and-how-to-tackle-them-cc29c47c5f24', 'https://goenvy.io/services/hubspot-implementation-and-onboarding/', 'https://marketingenvy.com/services/inbound-tech-marketing/', 'http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dlinkedin', 'https://towardsai.net/p/machine-learning/ml-algorithms-from-scratch-in-python', 'https://goenvy.io/services/', 'https://www.topbots.com/', 'https://goenvy.io/events/', 'https://www.linkedin.com/in/jasonbrownlee/?originalSubdomain=au', 'https://machinelearningmastery.com/blog/', 'https://meetings.hubspot.com/billy-cina', 'https://news.mit.edu/2022/machine-learning-harnessed-extreme-computing-aids-fusion-energy-development-0427', 'https://www.facebook.com/GoEnvy', 'https://www.youtube.com/@Get_Envy', 'https://goenvy.io/services/all-about-abm/', 'https://goenvy.io/contact', 'https://openai.com/', 'https://aws.amazon.com/blogs/machine-learning/', 'https://goenvy.io/resource_type/case-studies/', 'https://www.linkedin.com/company/goenvy/', 'https://www.marktechpost.com/', 'https://news.mit.edu/topic/artificial-intelligence2', 'https://openai.com/blog/codex-apps/', 'https://goenvy.io/contact/'}","[(2.5654147488540784, 'https://towardsai.net/p/machine-learning/ml-algorithms-from-scratch-in-python'), (2.3420236179137217, 'https://towardsai.net/ai/machine-learning'), (2.1324108271964386, 'https://research.aimultiple.com/advantages-of-ai/'), (1.6271459425797652, 'https://www.liberties.eu/en/stories/disadvantages-of-artificial-intelligence/44289'), (1.4596087331426828, 'https://aws.amazon.com/blogs/machine-learning/'), (1.450545988701718, 'https://www.marktechpost.com/'), (0.9284766908852593, 'https://blog.goenvy.io/tag/startup-marketing'), (0.9053574604251857, 'https://openai.com/'), (0.7537783614444094, 'https://ai.googleblog.com/'), (0.6810092530676158, 'https://pub.towardsai.net/common-challenges-in-machine-learning-and-how-to-tackle-them-cc29c47c5f24'), (0.4995838534443406, 'https://news.mit.edu/topic/artificial-intelligence2'), (0.2860647838453115, 'https://openai.com/blog/codex-apps/'), (0.2420299468734113, 'https://bair.berkeley.edu/blog/'), (0.14913749656797337, 'https://openai.com/blog/best-practices-for-deploying-language-models/'), (0.12562972690740135, 'https://blog.goenvy.io/9-must-read-uk-cybersecurity-blogs'), (0.10903109355965859, 'https://blog.goenvy.io/top-10-cloud-computing-blogs-to-follow'), (0.0, 'https://www.youtube.com/@Get_Envy'), (0.0, 'https://www.topbots.com/marketing-ai-research-attribution/'), (0.0, 'https://www.topbots.com/leading-nlp-language-models-2020/'), (0.0, 'https://www.topbots.com/'), (0.0, 'https://www.instagram.com/goenvy.io/'), (0.0, 'https://www.facebook.com/GoEnvy'), (0.0, 'https://wisdom.tech/blogs/'), (0.0, 'https://wisdom.tech/blog/2020/11/an-ai-winter-may-be-inevitable-what-we-should-fear-more-an-ai-ice-age/'), (0.0, 'https://twitter.com/mktgenvy'), (0.0, 'https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dtwitter&source=tweetbutton&text='), (0.0, 'https://sproutsocial.com/glossary/marketing-funnel/'), (0.0, 'https://news.mit.edu/2022/machine-learning-harnessed-extreme-computing-aids-fusion-energy-development-0427'), (0.0, 'https://marketingenvy.com/services/inbound-tech-marketing/'), (0.0, 'https://goenvy.io/services/startup-marketing/'), (0.0, 'https://goenvy.io/services/revops/'), (0.0, 'https://goenvy.io/services/ppc-lead-generation/'), (0.0, 'https://goenvy.io/services/marketing-operations/'), (0.0, 'https://goenvy.io/services/marketing-automation/'), (0.0, 'https://goenvy.io/services/inbound-marketing/'), (0.0, 'https://goenvy.io/services/hubspot-implementation-and-onboarding/'), (0.0, 'https://goenvy.io/services/b2b-cyber-security-marketing/'), (0.0, 'https://goenvy.io/services/b2b-creative-and-message-testing/'), (0.0, 'https://goenvy.io/services/all-about-abm/'), (0.0, 'https://goenvy.io/services/'), (0.0, 'https://goenvy.io/resources/'), (0.0, 'https://goenvy.io/resource_type/videos/'), (0.0, 'https://goenvy.io/resource_type/e-books/'), (0.0, 'https://goenvy.io/resource_type/case-studies/'), (0.0, 'https://goenvy.io/privacy-policy/'), (0.0, 'https://goenvy.io/pricing/'), (0.0, 'https://goenvy.io/events/'), (0.0, 'https://goenvy.io/contact/'), (0.0, 'https://goenvy.io/contact'), (0.0, 'https://goenvy.io/careers/'), (0.0, 'https://goenvy.io/about-us/'), (0.0, 'https://contentmarketinginstitute.com/what-is-content-marketing/'), (0.0, 'https://blog.goenvy.io/tag/b2b-marketing'), (0.0, 'https://blog.goenvy.io/from-vanilla-to-chunky-monkey-tools-to-sweeten-up-your-content-a-marketing-envy-summer-special'), (0.0, 'https://blog.goenvy.io'), (0.0, 'http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dlinkedin'), (0.0, 'http://www.facebook.com/share.php?u=https%3A%2F%2Fblog.goenvy.io%2F10-best-ai-marketing-blogs-you-should-follow%3Futm_medium%3Dsocial%26utm_source%3Dfacebook')]","  (0, 182)	0.02439387205328132
+  (0, 380)	0.01219693602664066
+  (0, 211)	0.01219693602664066
+  (0, 126)	0.01219693602664066
+  (0, 350)	0.01219693602664066
+  (0, 370)	0.01219693602664066
+  (0, 238)	0.01219693602664066
+  (0, 59)	0.01219693602664066
+  (0, 401)	0.01219693602664066
+  (0, 81)	0.01219693602664066
+  (0, 383)	0.01219693602664066
+  (0, 70)	0.01219693602664066
+  (0, 371)	0.01219693602664066
+  (0, 391)	0.01219693602664066
+  (0, 328)	0.01219693602664066
+  (0, 233)	0.01219693602664066
+  (0, 51)	0.01219693602664066
+  (0, 426)	0.01219693602664066
+  (0, 327)	0.01219693602664066
+  (0, 417)	0.01219693602664066
+  (0, 319)	0.01219693602664066
+  (0, 5)	0.01219693602664066
+  (0, 115)	0.01219693602664066
+  (0, 330)	0.01219693602664066
+  (0, 408)	0.02439387205328132
+  :	:
+  (0, 39)	0.02439387205328132
+  (0, 174)	0.01219693602664066
+  (0, 179)	0.03659080807992198
+  (0, 241)	0.03659080807992198
+  (0, 234)	0.01219693602664066
+  (0, 120)	0.01219693602664066
+  (0, 48)	0.5488621211988297
+  (0, 289)	0.01219693602664066
+  (0, 86)	0.01219693602664066
+  (0, 96)	0.01219693602664066
+  (0, 10)	0.03659080807992198
+  (0, 294)	0.02439387205328132
+  (0, 11)	0.01219693602664066
+  (0, 87)	0.01219693602664066
+  (0, 71)	0.02439387205328132
+  (0, 389)	0.01219693602664066
+  (0, 306)	0.03659080807992198
+  (0, 184)	0.0609846801332033
+  (0, 29)	0.0609846801332033
+  (0, 308)	0.02439387205328132
+  (0, 134)	0.09757548821312528
+  (0, 50)	0.04878774410656264
+  (0, 12)	0.6220437373586737
+  (0, 166)	0.02439387205328132
+  (0, 0)	0.09757548821312528","['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']"

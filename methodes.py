@@ -8,6 +8,7 @@ import urllib
 import url_determiner
 import webscraper
 import tf_idf
+import csv
 class Webscraper:
     """
     Class that starts the webscraper, it has default values for the link to start but it can be overwritten
@@ -18,7 +19,7 @@ class Webscraper:
         self.starting_url = "https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow"
         self.starting_query = ['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']
         self.loops_to_execute = 100
-        self.file_path_save = "similarity_data_AI_new.csv"
+        self.file_path_save = "similarity_data_AI_latest.csv"
         self.webpage = None
         self.write_to_csv = write_to_csv
         self.scanned_pages = list()
@@ -45,7 +46,51 @@ class Webscraper:
             except:
                 print('give me a valid url! include the https://www.')
 
+    def start_from_csv(self):
+        """
+        asks user for a csv name, opens this file and updates the Webscraper class with previous data
+        from executing the webscraper. It creates a None as parent to make it compatible with working code, this
+        is not how it should be but it is for now.
+        """
+        while True:
+            file_path = input("please enter file_path to continue on")
 
+            try:
+                with open(file_path, 'r') as csv_file:
+                    csv_reader = list(csv.reader(csv_file, delimiter= ","))
+                    index_column_url_link = [index for index, column_name in enumerate(csv_reader[0])
+                                                if column_name == "url_link"][0]
+
+                    self.scanned_pages =([row[index_column_url_link] for row in csv_reader[1:]])
+                    index_out_going_links_list_with_similarity =[index for index, column_name in enumerate(csv_reader[0])
+                                                if column_name == "out_going_links_list_with_similarity"][0]
+
+                    links_to_visit_with_similarity = csv_reader[len(csv_reader)-1][index_out_going_links_list_with_similarity]
+                    links_to_visit_with_similarity = self.convert_csv_text_to_python_data(links_to_visit_with_similarity)
+                    self.links_to_visit_with_parent = [(link_sim, "no_parent") for link_sim in links_to_visit_with_similarity]
+
+                    break
+            except FileNotFoundError:
+                print('that was the wrong file_name')
+                continue
+
+    def convert_csv_text_to_python_data(self, data):
+        """
+        asks for data in text format that is in the csv, then it converts is back into lists and tuples
+        """
+        data = data.strip("[]")
+        data = data.split("), ")
+
+        formatted_data = []
+
+        for item in data:
+            item = item.strip("()")
+            number, url = item.split(", ", 1)
+            number = float(number)
+            url = url.strip("'")
+            formatted_data.append((number, url))
+
+        return formatted_data
     def update_webscraper(self, webpage_object):
         """
         adds the pages that are scanned
@@ -83,6 +128,12 @@ class Webscraper:
         self.update_webscraper(self.webpage)
 
     def scan_webpages_until_loops_to_execute(self):
+        """
+        loops through webpages until the amount of loos_to_execute has been met
+        Creates a webpage object for each instance in a list
+        writes to a csv file in the old format of a dictionairy through the write_page_to_csv
+
+        """
         for loop_number in range(self.loops_to_execute):
             if len(self.links_to_visit_with_parent) <=0:
                 break
@@ -93,15 +144,24 @@ class Webscraper:
                                                             link_to_check=self.links_to_visit_with_parent[0][0][1],
                                                             parent_url=self.links_to_visit_with_parent[0][1])
             self.webpage_object_list[loop_number].scan_webpage()
-            links_to_visit = webscraper.filter_new_paths_threshold(
-                self.webpage_object_list[loop_number].similarity_score_unique_links_on_webpage,
-                threshold=self.threshold
-            )
-            self.links_to_visit_with_parent = [(link, self.links_to_visit_with_parent[0][1]) for link in links_to_visit]
+            try:
+                links_to_visit = webscraper.filter_new_paths_threshold(
+                    self.webpage_object_list[loop_number].similarity_score_unique_links_on_webpage,
+                    threshold=self.threshold
+                )
+            except TypeError:
+                raise TypeError("a wrong type was given with the link =", self.links_to_visit_with_parent[0][0][1])
+                print('error', self.webpage_object_list[loop_number].link_to_check)
+                links_to_visit = []
+            self.links_to_visit_with_parent.extend([(link, self.links_to_visit_with_parent[0][1]) for link in links_to_visit])
+            self.links_to_visit_with_parent = self.remove_duplicates_from_list_and_sort()
+
             if self.write_to_csv:
                 self.webpage_object_list[loop_number].write_page_to_csv(self.file_path_save)
             self.update_webscraper(self.webpage_object_list[loop_number])
 
+    def remove_duplicates_from_list_and_sort(self):
+        return sorted(list(dict.fromkeys(self.links_to_visit_with_parent)), reverse=True)
 
 class Webpage:
     """
@@ -155,7 +215,8 @@ class Webpage:
 if __name__ == "__main__":
     print("hi")
     start_page = Webscraper()
-    start_page.scan_first_webpage()
+    start_page.start_from_csv()
+    #start_page.scan_first_webpage()
     start_page.scan_webpages_until_loops_to_execute()
 
 
