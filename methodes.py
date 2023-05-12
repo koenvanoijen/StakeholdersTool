@@ -9,6 +9,8 @@ import url_determiner
 import webscraper
 import tf_idf
 import csv
+import os
+
 class Webscraper:
     """
     Class that starts the webscraper, it has default values for the link to start but it can be overwritten
@@ -19,7 +21,7 @@ class Webscraper:
         self.starting_url = "https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow"
         self.starting_query = ['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']
         self.loops_to_execute = 100
-        self.file_path_save = "similarity_data_AI_latest.csv"
+        self.file_path_save = "similarity_data_AI_to_check.csv"
         self.webpage = None
         self.write_to_csv = write_to_csv
         self.scanned_pages = list()
@@ -102,7 +104,7 @@ class Webscraper:
         [self.evaluated_links.add(unique_link) for unique_link in webpage_object.unique_links_on_webpage]
         for link in self.links_to_visit_with_parent:
             print("link[0][1]", link[0][1])
-            print("scannned_pages", self.scanned_pages)
+            print("scanned_pages", self.scanned_pages)
             print(link[0][1] not in self.scanned_pages)
         self.links_to_visit_with_parent = [link for link in self.links_to_visit_with_parent if link[0][1] not in self.scanned_pages]
 
@@ -124,7 +126,7 @@ class Webscraper:
         )
         self.links_to_visit_with_parent = [(link,self.starting_url) for link in links_to_visit]
         if self.write_to_csv:
-            self.webpage.write_page_to_csv(self.file_path_save)
+            self.webpage.write_page_to_csv(self.file_path_save, self.links_to_visit_with_parent)
         self.update_webscraper(self.webpage)
 
     def scan_webpages_until_loops_to_execute(self):
@@ -144,6 +146,7 @@ class Webscraper:
                                                             link_to_check=self.links_to_visit_with_parent[0][0][1],
                                                             parent_url=self.links_to_visit_with_parent[0][1])
             self.webpage_object_list[loop_number].scan_webpage()
+            links_to_visit = []
             try:
                 links_to_visit = webscraper.filter_new_paths_threshold(
                     self.webpage_object_list[loop_number].similarity_score_unique_links_on_webpage,
@@ -152,12 +155,12 @@ class Webscraper:
             except TypeError:
                 raise TypeError("a wrong type was given with the link =", self.links_to_visit_with_parent[0][0][1])
                 print('error', self.webpage_object_list[loop_number].link_to_check)
-                links_to_visit = []
-            self.links_to_visit_with_parent.extend([(link, self.links_to_visit_with_parent[0][1]) for link in links_to_visit])
+
+            self.links_to_visit_with_parent.extend([(link, self.links_to_visit_with_parent[0][0][1]) for link in links_to_visit])
             self.links_to_visit_with_parent = self.remove_duplicates_from_list_and_sort()
 
             if self.write_to_csv:
-                self.webpage_object_list[loop_number].write_page_to_csv(self.file_path_save)
+                self.webpage_object_list[loop_number].write_page_to_csv(self.file_path_save, self.links_to_visit_with_parent)
             self.update_webscraper(self.webpage_object_list[loop_number])
 
     def remove_duplicates_from_list_and_sort(self):
@@ -199,7 +202,7 @@ class Webpage:
             print("unique_link_set=", self.unique_links_on_webpage)
             self.similarity_score_unique_links_on_webpage = webscraper.similarity_check_query_with_linklist(self.query, self.unique_links_on_webpage)
 
-    def write_page_to_csv(self,file_path):
+    def write_page_to_csv_old(self,file_path):
         results_dict = webscraper.results_of_tf_idf_to_dict(similarity_score=self.similarity_score_text_query,
                                                  page_url=self.link_to_check, parent_url=self.parent_url,
                                                  out_going_links_set=self.links_on_webpage,
@@ -209,14 +212,74 @@ class Webpage:
 
         csv_writer.update_csv_file(file_path=file_path, data=results_dict)
 
+    def write_page_to_csv(self,file_path, out_going_list_with_similarity_with_parent_not_yet_visited):
+        self.update_csv_file(file_path=file_path,
+        out_going_list_with_similarity_with_parent_not_yet_visited= out_going_list_with_similarity_with_parent_not_yet_visited)
 
+
+    def create_csv_file(self, file_path):
+        """
+        Creates a CSV file with the specified columns.
+
+        Args:
+            file_path (str): File path of the CSV file.
+
+        Returns:
+            None
+        """
+        # Define the column names
+        fieldnames = ["similarity_score", "url_link", "parent_url", "outgoing_link_on_webpage_with_similarity",
+                      "out_going_list_with_similarity_with_parent_not_yet_visited", "query_words"]
+
+        # Create the CSV file with column names
+        with open(file_path, mode='w', newline='', encoding='utf-8') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            writer.writeheader()
+        print(f"CSV file '{file_path}' created successfully!")
+
+    def update_csv_file(self, file_path, out_going_list_with_similarity_with_parent_not_yet_visited):
+        """
+        Updates the CSV file with new data. If CSV file does not exists, it will be created by invoking create_csv_file
+
+        Args:
+            file_path (str): File path of the CSV file.
+            data (dict): Data to be written to the CSV file. Should be a dictionary with keys as column names and values
+                         as data to be written. In form :
+                                                        "similarity_score",
+                                                        "url_link",
+                                                        "parent_url",
+                                                        "outgoing_link_on_webpage_with_similarity",
+                                                        "out_going_list_with_similarity_with_parent_not_yet_visited"
+                                                        "query_words"
+        Returns:
+            None
+        """
+        # Check if the file path exists
+        if not os.path.exists(file_path):
+            self.create_csv_file(file_path)
+
+        data_dict = dict()
+        data_dict = {
+            "similarity_score": self.similarity_score_text_query,
+            "url_link": self.link_to_check,
+            "parent_url": self.parent_url,
+            "outgoing_link_on_webpage_with_similarity": self.similarity_score_unique_links_on_webpage,
+            "out_going_list_with_similarity_with_parent_not_yet_visited": out_going_list_with_similarity_with_parent_not_yet_visited,
+            "query_words": self.query
+        }
+
+        # Append new data to the CSV file
+        with open(file_path, mode='a', newline='', encoding='utf-8') as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=data_dict.keys())
+            writer.writerow(data_dict)
+        print(f"Data updated in CSV file '{file_path}' successfully!")
 
 
 if __name__ == "__main__":
     print("hi")
     start_page = Webscraper()
-    start_page.start_from_csv()
-    #start_page.scan_first_webpage()
+    #start_page.start_from_csv()
+    start_page.scan_first_webpage()
     start_page.scan_webpages_until_loops_to_execute()
 
 
