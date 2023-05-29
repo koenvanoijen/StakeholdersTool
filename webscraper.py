@@ -61,7 +61,22 @@ def filter_text_in_html(soup_text):
     wanted_html_tags = ['title', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ol', 'p']
     return [remove_html_tags(tag.text) for tag in soup_text.find_all() if tag.name in wanted_html_tags]
 
-def fetch_important_text_in_webpage(link):
+def fetch_important_text_in_webpage(webpage_soup):
+    """
+    input: web_page_soup = format should be in a beautifulsoup html.parser format
+    output: return preprocessed text in the html page of link
+    """
+    try:
+        text_in_website = filter_text_in_html(webpage_soup)
+        text_preprocessed = Preprocess.preproccess(text_in_website)
+        text_preprocessed_joined = " ".join(text_preprocessed)
+        return text_preprocessed_joined
+
+    except Exception as e:
+        print(f"!@!@!@!@ Error fetching content from URL: {link}. Error: {e}")
+        return ""
+
+def fetch_important_text_in_webpage_original(link):
     """
     input: link = url string
     output: return preprocessed text in the html page of link
@@ -429,13 +444,21 @@ def start_webscrapers():
 
 
 if __name__ == "__main__":
+    webpage = retrieve_webpage("https://wwww.hellonewday.nl")
+    print(webpage)
+    #webpage_soup = BeautifulSoup(webpage.text, "html.parser")
+    #ext_in_website = filter_text_in_html(webpage_soup)
+
+
+
+
     #query_words = ['absorptive capacity', 'assimilation', 'acquisition', 'transformation']
     #origin_query = "https://en.wikipedia.org/wiki/Absorptive_capacity"
 
     #dictionairy_total = loop_through_webpages(query=query_words, url_link=origin_query, file_path="similarity_data.csv")
     #print("all", dictionairy_total)
     #linkset = get_all_links_on_html_page("https://api.semanticscholar.org/CorpusID:153462623")
-    start_webscraper()
+    #start_webscraper()
 
     #similarity_dict_one_page = execution_web_page_one_loop_cycle(query_words, origin_query, "similarity_data.csv", parent_url='None', write_to_csv=True)
 

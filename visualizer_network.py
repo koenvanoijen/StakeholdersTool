@@ -11,6 +11,7 @@ df = pd.read_csv("/Users/mehdigreefhorst/Desktop/StakeholdersTool/similarity_dat
 
 G = nx.MultiDiGraph()
 
+
 def draw_diagram():
 
     # Iterate through the DataFrame rows and add nodes and edges to the graph

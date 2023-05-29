@@ -10,6 +10,7 @@ import webscraper
 import tf_idf
 import csv
 import os
+import caching
 
 class Webscraper:
     """
@@ -21,7 +22,7 @@ class Webscraper:
         self.starting_url = "https://blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow"
         self.starting_query = ['generative AI', 'general intelligence', 'improvements', 'smart machines', 'scary']
         self.loops_to_execute = 100
-        self.file_path_save = "similarity_data_AI_to_check.csv"
+        self.file_path_save = "similarity_data_AI_to_check_test.csv"
         self.webpage = None
         self.write_to_csv = write_to_csv
         self.scanned_pages = list()
@@ -186,7 +187,9 @@ class Webpage:
         self.query = query
 
     def scan_webpage(self):
-        self.preprocessed_text = webscraper.fetch_important_text_in_webpage(self.link_to_check)
+        #TODO make the file_path from the caching standardized from the object file_path
+        soup_webpage_object = caching.get_or_save_cached_file_in_soup_format(self.link_to_check, file_path="cached_files")
+        self.preprocessed_text = webscraper.fetch_important_text_in_webpage(soup_webpage_object)
         self.valid_html_text = webscraper.is_not_valid_html_text(self.preprocessed_text)
         if self.valid_html_text:
             return "link_unvalid" #continue  # text skips vectorization to prevent error
