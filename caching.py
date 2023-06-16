@@ -6,9 +6,18 @@ def remove_https(url_link):
     return url_link.replace("https://", "")
 
 def get_correct_file_path_to_save(url_link, file_path):
+    """
+        input:
+            url_link = link that is going to be accessed
+            file_path = location to be saved on
+
+        output:
+            complete_path = a combination of url_ink and file_path, for the cached file to be saved on
+
+    """
     file_name_to_save = remove_https(url_link)
     if isinstance(file_path, str):
-        complete_path = f"{file_path}{file_name_to_save}.html"if file_path[-1] == '/' else f"{file_path}/{file_name_to_save}.html"
+        complete_path = f"{file_path}{file_name_to_save}.html"if file_path[-1] == '\\' else f"{file_path}/{file_name_to_save}.html"
         return complete_path
     elif file_path is None:
         complete_path = f"{file_name_to_save}.html"
@@ -33,7 +42,7 @@ def save_cached_file(complete_path, html_file):
 
 def get_or_save_cached_file_in_soup_format(url_link, file_path = None):
     """
-        input:  url_link: link to get the souphtml from
+        input:  url_link: link to get access
                 file_path: the folder that you want to access to get/save the output_file
         output:
                 output: beautiful_soup object in html.parser
@@ -51,4 +60,8 @@ def get_or_save_cached_file_in_soup_format(url_link, file_path = None):
         return webpage_soup
 
 
-get_or_save_cached_file_in_soup_format('https://www.blog.goenvy.io/10-best-ai-marketing-blogs-you-should-follow', "cached_files")
+url_link = "https://www.artificialintelligence-news.com/2023/06/14/european-parliament-adopts-ai-act-position/"
+#get_or_save_cached_file_in_soup_format(url_link, "cached_files")
+html_text = requests.get(url_link, allow_redirects=True)
+webpage_soup = BeautifulSoup(html_text.text, "html.parser")
+print(webpage_soup)

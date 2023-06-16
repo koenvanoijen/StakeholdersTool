@@ -82,6 +82,7 @@ def fetch_important_text_in_webpage_original(link):
     output: return preprocessed text in the html page of link
     """
     try:
+        print(link)
         webpage = retrieve_webpage(link)
         webpage_soup = BeautifulSoup(webpage.text, "html.parser")
         text_in_website = filter_text_in_html(webpage_soup)
@@ -118,7 +119,7 @@ def similarity_check_query_with_linklist(query, link_list):
     results = list()
 
     for index, link in enumerate(link_list):
-        preprocessed_text = fetch_important_text_in_webpage(link)
+        preprocessed_text = fetch_important_text_in_webpage_original(link)
 
         if is_not_valid_html_text(preprocessed_text):
             continue #text skips vectorization to prevent error
@@ -169,7 +170,7 @@ def execution_web_page_one_loop_cycle(query, link_to_check,file_path, parent_url
     # Create the possibility to give weights to certain search queries
     # for now set all the weights to 1
     weights = [1 for i in query]
-    preprocessed_text = fetch_important_text_in_webpage(link_to_check)
+    preprocessed_text = fetch_important_text_in_webpage_original(link_to_check)
     if is_not_valid_html_text(preprocessed_text):
         return "link_unvalid" #continue  # text skips vectorization to prevent error
 
