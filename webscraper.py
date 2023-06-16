@@ -78,6 +78,27 @@ def fetch_important_text_in_webpage(webpage_soup):
 
 def fetch_important_text_in_webpage_original(link):
     """
+    input: link = url_link in string format
+    output: list of lines of preprocessed text in the html page of the link
+                The preprocessing uses the Preprocess python package
+                It lemmitizes the words and removes stopwords
+
+    """
+    try:
+        print(link)
+        webpage = retrieve_webpage(link)
+        webpage_soup = BeautifulSoup(webpage.text, "html.parser")
+        text_in_website = filter_text_in_html(webpage_soup)
+        text_preprocessed = [Preprocess.preproccess([line]) for line in text_in_website]
+        text_preprocessed_joined = " ".join(text_preprocessed)
+        return text_preprocessed_joined
+
+    except Exception as e:
+        print(f"!@!@!@!@ Error fetching content from URL: {link}. Error: {e}")
+        return ""
+
+def fetch_important_text_in_webpage_original_backup(link):
+    """
     input: link = url string
     output: return preprocessed text in the html page of link
     """

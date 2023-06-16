@@ -115,4 +115,4 @@ def preproccess(text, is_dutch_bool = "determine_language"):
     combined_text = " ".join(stemmed_text)
 
     #tagged_text = EntityTagging.taggingSPACY(text, dutch)
-    return stemmed_text
+    return combined_text
