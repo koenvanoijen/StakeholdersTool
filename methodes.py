@@ -185,13 +185,17 @@ class Webpage:
         self.weights = [weights for i in query]
         self.link_to_check = link_to_check
         self.query = query
+        self.soup_webpage = None
+        self.file_path = "cached_files"
 
     def scan_webpage(self):
-        #TODO the 2 lines of code are to make the webpage work with cashing of url_text to enhance process. however
-        #TODO the code does not work in cashing, it needs a database system to work properly
-        original_cached_in_file_link, soup_webpage = caching.get_or_save_cached_file_in_soup_format(self.link_to_check,
-                                                                                            file_path="cached_files")
-        self.preprocessed_text = webscraper.fetch_important_text_in_webpage(soup_webpage)
+        """
+        scans a webpage where it evaluates all the links on the webpage and their similiarity score with the query
+        it uses libraries, request_page, caching, preprocess, webscraper
+        """
+        original_cached_in_file_link, self.soup_webpage = caching.get_or_save_cached_file_in_soup_format(self.link_to_check,
+                                                                                            file_path=self.file_path)
+        self.preprocessed_text = webscraper.fetch_important_text_in_webpage(self.soup_webpage)
 
         temporary_text = webscraper.fetch_important_text_in_webpage_original(self.link_to_check)
         if temporary_text == self.preprocessed_text:
@@ -202,15 +206,47 @@ class Webpage:
         else:
             self.cosine_similarity_text_and_query, self.text_vector = tf_idf.cosine(self.preprocessed_text, self.query)
             self.similarity_score_text_query = tf_idf.scoreAnalysis(self.cosine_similarity_text_and_query, self.weights)
-            self.links_on_webpage = webscraper.get_all_links_on_html_page(self.link_to_check)
+            self.links_on_webpage = webscraper.get_all_links_on_html_page(self.soup_webpage, self.link_to_check)
 
             # Create a filter that groups the link_list so that it only has the links that are unique
             self.unique_links_on_webpage = url_determiner.get_only_unique_links(set(self.links_on_webpage))
 
             print("links_on_webpage=", self.links_on_webpage)
             print("unique_link_set=", self.unique_links_on_webpage)
-            self.similarity_score_unique_links_on_webpage = webscraper.similarity_check_query_with_linklist(self.query, self.unique_links_on_webpage)
+            self.similarity_score_unique_links_on_webpage = self.similarity_check_query_with_linklist(self.query,
+                                                                                        self.unique_links_on_webpage)
 
+    def similarity_check_query_with_linklist(self, query, link_list):
+        """
+        query is not yet preprocessed, it is given as a normal list
+        input:
+            query : the query to be compared with to get similarity score
+            link_list: list of links that must explored
+            origin_link:
+
+        output:
+            return: list of links with their respective similarity score to the query
+        """
+
+        results = list()
+
+        for index, link in enumerate(link_list):
+            try:
+
+                original_cached_in_file_link, soup_webpage = caching.get_or_save_cached_file_in_soup_format(link, file_path=self.file_path)
+                preprocessed_text = webscraper.fetch_important_text_in_webpage(soup_webpage)
+            except OSError:
+                continue
+
+            #preprocessed_text = webscraper.fetch_important_text_in_webpage_original(link)
+
+            if webscraper.is_not_valid_html_text(preprocessed_text):
+                continue  # text skips vectorization to prevent error
+
+            similarity_score = tf_idf.scoreAnalysis(tf_idf.cosine(preprocessed_text, query)[0], self.weights)
+            results.append((similarity_score, link))
+
+        return sorted(results, reverse=True)
     def write_page_to_csv_old(self,file_path):
         results_dict = webscraper.results_of_tf_idf_to_dict(similarity_score=self.similarity_score_text_query,
                                                  page_url=self.link_to_check, parent_url=self.parent_url,

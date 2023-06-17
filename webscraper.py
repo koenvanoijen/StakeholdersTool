@@ -7,7 +7,31 @@ import csv_writer
 import urllib
 import url_determiner
 
-def get_all_links_on_html_page(url):
+def get_all_links_on_html_page(soup, source_url):
+    """
+
+    parameter : link in string_format --> this is the source url
+    output:
+        return all the links on the webpage in a set
+
+    """
+
+    links = set()
+
+    for link in soup.find_all('a', href = True):
+
+        url_link = link.get('href')
+        if len(url_link) == 0:
+            continue
+        if url_link[0] == "/" or "https" in url_link:
+            url_link_final_redirect = url_determiner.get_correct_url(source_url=source_url, target_url=url_link )
+
+            if "https" in url_link_final_redirect:
+                links.add(url_link_final_redirect)
+    print(str(links))
+    return set(link for link in links if 'https' in link)
+
+def get_all_links_on_html_page_old(url):
     """
 
     parameter : link in string_format --> this is the source url
@@ -33,7 +57,6 @@ def get_all_links_on_html_page(url):
                 links.add(url_link_final_redirect)
     print(str(links))
     return set(link for link in links if 'https' in link)
-
 
 def retrieve_webpage(url):
     """
@@ -85,12 +108,13 @@ def fetch_important_text_in_webpage_original(link):
 
     """
     try:
-        print(link)
+
         webpage = retrieve_webpage(link)
         webpage_soup = BeautifulSoup(webpage.text, "html.parser")
         text_in_website = filter_text_in_html(webpage_soup)
         text_preprocessed = [Preprocess.preproccess([line]) for line in text_in_website]
         text_preprocessed_joined = " ".join(text_preprocessed)
+        print(link)
         return text_preprocessed_joined
 
     except Exception as e:
@@ -123,6 +147,33 @@ def is_not_valid_html_text(text):
     """
     if len(text) < 10:
         return True
+
+def similarity_check_query_with_linklist(query, link_list):
+    """
+    query is not yet preprocessed, it is given as a normal list
+    input:
+        query : the query to be compared with to get similarity score
+        link_list: list of links that must explored
+        origin_link:
+
+    output:
+        return: list of links with their respective similarity score to the query
+    """
+
+    weights = [1 for _ in query]
+    results = list()
+
+    for index, link in enumerate(link_list):
+        preprocessed_text = fetch_important_text_in_webpage_original(link)
+
+        if is_not_valid_html_text(preprocessed_text):
+            continue #text skips vectorization to prevent error
+
+        similarity_score = tf_idf.scoreAnalysis(tf_idf.cosine(preprocessed_text, query)[0], weights)
+        results.append((similarity_score, link))
+
+
+    return sorted(results, reverse= True)
 
 def similarity_check_query_with_linklist(query, link_list):
     """

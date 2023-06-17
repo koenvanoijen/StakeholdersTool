@@ -1,0 +1,636 @@
+https://determined.ai/
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport"/>
+<link as="font" crossorigin="anonymous" href="/assets/webfonts/38C7DA_4_0.woff2" rel="preload"/>
+<link as="font" crossorigin="anonymous" href="/assets/webfonts/38C7DA_1_0.woff2" rel="preload"/>
+<!-- Google Tag Manager -->
+<!-- production -->
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MBQKKFD');
+    </script>
+<!-- Google Analytics -->
+<script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+
+      ga('create', 'UA-110089850-1', 'auto');
+      ga('set', 'transport', 'beacon');
+      ga('send', 'pageview');
+    </script>
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<link crossorigin="anonymous" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" rel="stylesheet"/>
+<!--[if lte IE 8]>
+      <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+<!--[if gt IE 8]><!-->
+<link href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css" rel="stylesheet"/>
+<!--<![endif]-->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet"/>
+<link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+<link href="/assets/css/MyFontsWebfontsKit.css" rel="stylesheet" type="text/css"/>
+<link href="/assets/css/styles.css?v=1683829512" rel="stylesheet"/>
+<link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" rel="stylesheet"/>
+<link href="https://determined.ai/feed.xml" rel="alternate" title="Determined AI" type="application/atom+xml">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Distributed Deep Learning and Hyperparameter Tuning Platform | Determined AI</title>
+<meta content="Jekyll v3.9.3" name="generator">
+<meta content="Distributed Deep Learning and Hyperparameter Tuning Platform" property="og:title">
+<meta content="en_US" property="og:locale"/>
+<meta content="Open source deep learning training platform that enables data scientists to train better models, with built-in hyperparameter tuning and distributed training" name="description"/>
+<meta content="Open source deep learning training platform that enables data scientists to train better models, with built-in hyperparameter tuning and distributed training" property="og:description"/>
+<link href="https://determined.ai/" rel="canonical">
+<meta content="https://determined.ai/" property="og:url"/>
+<meta content="Determined AI" property="og:site_name"/>
+<meta content="website" property="og:type"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="Distributed Deep Learning and Hyperparameter Tuning Platform" property="twitter:title"/>
+<meta content="@determinedai" name="twitter:site"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"Open source deep learning training platform that enables data scientists to train better models, with built-in hyperparameter tuning and distributed training","headline":"Distributed Deep Learning and Hyperparameter Tuning Platform","name":"Determined AI","url":"https://determined.ai/"}</script>
+<!-- End Jekyll SEO tag -->
+<meta content="/assets/images/logo_text_transparent_crop_high_res_with_padding2.png" property="og:image"/>
+<meta content="image/png" property="og:image:type"/>
+</link></meta></meta></link></head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-MBQKKFD" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+<div class="default-layout">
+<nav class="navbar-outer" id="top-nav">
+<div class="navbar container">
+<div class="nav-brand">
+<a href="/">
+<img alt="Determined AI Logo" class="brand-img pure-img dark" src="/assets/images/R4_Logo.svg"/>
+<img alt="Determined AI Logo" class="brand-img pure-img light" src="/assets/images/R4_Logo-Reversed.svg"/>
+</a>
+<div id="top-nav-burger">
+<i class="fas fa-bars hamburger"></i>
+<i class="fas fa-times close"></i>
+</div>
+</div>
+<ul class="nav-links">
+<li class="nav-link-outer">
+<a class="nav-link text-link" href="/project/">Project</a>
+</li>
+<li class="nav-link-outer">
+<a class="nav-link text-link" href="/blog/">Blog</a>
+</li>
+<li class="nav-link-outer">
+<a class="nav-link text-link" href="/resources/">Resources</a>
+</li>
+<li class="nav-link-outer">
+<a class="nav-link" href="https://github.com/determined-ai/determined" onclick="trackClick('github')" target="_blank">
+<button class="btn btn-primary btn-sm">GitHub <i class="fas fa-external-link-alt"></i></button>
+</a>
+</li>
+<li class="nav-link-outer">
+<a class="nav-link" href="https://join.slack.com/t/determined-community/shared_invite/zt-cnj7802v-KcVbaUrIzQOwmkmY7gP0Ew" onclick="trackClick('slack')" target="_blank">
+<button class="btn btn-primary btn-inverted btn-sm">Slack <i class="fas fa-external-link-alt"></i></button>
+</a>
+</li>
+<li class="nav-link-outer">
+<a class="nav-link" href="https://docs.determined.ai/latest/" onclick="trackClick('docs')" target="_blank">
+<button class="btn btn-primary btn-inverted btn-sm">Docs <i class="fas fa-external-link-alt"></i></button>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<div class="home-outer">
+<div class="jumbotron">
+<div class="container">
+<center>
+<div class="headline">
+          The fastest and easiest way to build deep learning models.
+        </div>
+<table class="hero">
+<tr>
+<td>
+<img alt="Ship DL Features Faster" src="/assets/images/home/home-circles-neural-net.png">
+<p class="icon-headings">Train Models<br/>Faster</p>
+</img></td>
+<td>
+<img alt="Build More Accurate Models" src="/assets/images/home/home-circles-results.png">
+<p class="icon-headings">Build More<br/>Accurate Models</p>
+</img></td>
+<td>
+<img alt="Share GPU Clusters" src="/assets/images/home/home-circles-gpus.png"/>
+<p class="icon-headings">Get More Out of<br/>Your GPUs</p>
+</td>
+<td>
+<img alt="Scale Your Deep Learning Team" src="/assets/images/home/home-circles-team.png"/>
+<p class="icon-headings">Track and Reproduce<br/>Your Experiments</p>
+</td>
+</tr>
+</table>
+<div class="hero-buttons">
+<a href="https://github.com/determined-ai/determined" onclick="trackClick('github')" target="_blank">
+<button class="btn btn-primary">GitHub <i class="fas fa-external-link-alt"></i></button>
+</a>
+<a href="https://docs.determined.ai/latest/#get-started-locally" onclick="trackClick('docs')" target="_blank">
+<button class="btn btn-secondary">Quick Start <i class="fas fa-external-link-alt"></i></button>
+</a>
+</div>
+</center>
+</div>
+</div>
+<section class="bg-light">
+<div class="container">
+<div class="slides">
+<div class="slide-buttons">
+<button class="active" id="button-1" onclick="newSlide(`1`)">Distributed Training</button>
+<button class="" id="button-2" onclick="newSlide(`2`)">Hyperparameter Tuning</button>
+<button class="" id="button-3" onclick="newSlide(`3`)">Experiment Tracking</button>
+<button class="" id="button-4" onclick="newSlide(`4`)">Resource Management</button>
+</div>
+<div>
+<div class="slide active" id="slide-1">
+<div class="text">
+<h1>Train at any scale</h1>
+<h2>Distributed training without changing your model code. Determined takes care of provisioning machines, networking, data loading, and fault tolerance.</h2>
+</div>
+<img src="/assets/images/home/dtrain.png"/>
+</div>
+<div class="slide" id="slide-2">
+<div class="text">
+<h1>Tune hyperparameters</h1>
+<h2>Build more accurate models faster with scalable hyperparameter search, seamlessly orchestrated by Determined. Use state-of-the-art algorithms and explore results with our hyperparameter search visualizations.</h2>
+</div>
+<img src="/assets/images/home/hp.png"/>
+</div>
+<div class="slide" id="slide-3">
+<div class="text">
+<h1>Analyze your results</h1>
+<h2>Interpret your experiment results using the Determined UI and TensorBoard, and reproduce experiments with artifact tracking. Deploy your model using Determined's built-in model registry.</h2>
+</div>
+<img src="/assets/images/home/tracking.png"/>
+</div>
+<div class="slide" id="slide-4">
+<div class="text">
+<h1>Share cluster resources</h1>
+<h2>Easily share on-premise or cloud GPUs with your team. Determined’s cluster scheduling offers first-class support for deep learning and seamless spot instance support.</h2>
+</div>
+<img src="/assets/images/home/resource-management.png"/>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+	function newSlide(id) {
+		var slides = document.getElementsByClassName('slide');
+		for (var slide of slides){
+			slide.classList.remove('active');
+		}
+		var buttons = document.querySelectorAll('.slide-buttons button');
+		for (var button of buttons){
+			button.classList.remove('active');
+		}
+		let targetslide = document.getElementById(`slide-${id}`);
+		targetslide.classList.add('active');
+		let targetButton = document.getElementById(`button-${id}`);
+		targetButton.classList.add('active');
+
+	}
+</script>
+</div>
+</section>
+<section>
+<div class="container">
+<div class="center">
+<div class="diagram padded">
+<img alt="Determined AI System Architecture" src="/assets/images/developers/determined-components.jpg" width="80%">
+</img></div>
+<br/><br/>
+<a class="vertical-pad" href="https://github.com/determined-ai/determined" onclick="trackClick('github')">
+<button class="btn btn-primary">Check it out on GitHub</button>
+</a>
+</div>
+</div>
+</section>
+<section class="bg-light">
+<div class="container">
+<div class="recent-gallery">
+<div class="center">
+<h1>Featured Examples with Determined</h1>
+<h2>Check out examples of how you can use Determined to train popular deep learning models at scale</h2>
+</div>
+<div class="gallery-landing-outer partial-gallery">
+<style type="text/css">
+	    [id='galleryimage5'] {
+	      background: url('/assets/images/gallery/people_shadows.png') white center no-repeat; background-size: contain;
+	    }
+	</style>
+<div class="gallery-grid-inner">
+<div id="galleryimage5"></div>
+<div class="gallery-content-div">
+<h4 class="post-title-outer">
+<a href="/gallery/hpsearch-fasterrcnn-coco-pytorch">Hyperparameter Search on FasterRCNN</a>
+</h4>
+<p class="post-authors">
+<span class="author-span">
+	            
+	              Dave Troiano,
+	            
+	          </span>
+<span class="author-span">
+	            
+	              Angela Jiang
+	            
+	          </span>
+	          
+	       	  
+<!-- 	       	Dec 29, 2020 -->
+</p>
+<div class="tags">
+<button>
+	              FasterRCNN
+	            </button>
+<button>
+	              Hyperparameter Search
+	            </button>
+<button>
+	              Object Detection
+	            </button>
+<button>
+	              PyTorch
+	            </button>
+</div>
+</div>
+</div>
+<style type="text/css">
+	    [id='galleryimage6'] {
+	      background: url('/assets/images/gallery/cycleGan.png') white center no-repeat; background-size: contain;
+	    }
+	</style>
+<div class="gallery-grid-inner">
+<div id="galleryimage6"></div>
+<div class="gallery-content-div">
+<h4 class="post-title-outer">
+<a href="/gallery/cyclegan">Train CycleGan on Multiple GPUS with Determined</a>
+</h4>
+<p class="post-authors">
+<span class="author-span">
+	            
+	              Sean Rowan,
+	            
+	          </span>
+<span class="author-span">
+	            
+	              Shiyuan Zhu,
+	            
+	          </span>
+<span class="author-span">
+	            
+	              Angela Jiang
+	            
+	          </span>
+	          
+	       	  
+<!-- 	       	Oct 07, 2020 -->
+</p>
+<div class="tags">
+<button>
+	              GAN
+	            </button>
+<button>
+	              PyTorch
+	            </button>
+</div>
+</div>
+</div>
+<style type="text/css">
+	    [id='galleryimage7'] {
+	      background: url('/assets/images/gallery/bert/bert.png') white center no-repeat; background-size: contain;
+	    }
+	</style>
+<div class="gallery-grid-inner">
+<div id="galleryimage7"></div>
+<div class="gallery-content-div">
+<h4 class="post-title-outer">
+<a href="/gallery/fine-tune-bert">Fine-Tune BERT with Determined</a>
+</h4>
+<p class="post-authors">
+<span class="author-span">
+	            
+	              David Hershey
+	            
+	          </span>
+	          
+	       	  
+<!-- 	       	Oct 05, 2020 -->
+</p>
+<div class="tags">
+<button>
+	              Natural Language Processing
+	            </button>
+<button>
+	              PyTorch
+	            </button>
+<button>
+	              Transformers
+	            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- <a href="/gallery/">view the full gallery &#10230;</a> -->
+</div>
+</div>
+</section>
+<div class="container drop">
+<div class="home-center home-subheading">
+<h1>Deep Learning in hours and minutes, not days and weeks.</h1>
+</div>
+<div class="product-summaries pure-g">
+<div class="product-summary pure-u-1 pure-u-sm-1-3">
+<div class="home-center">
+<img alt="product-summary-5.svg" src="/assets/images/home/product-summary-5.svg"/>
+<h2><strong>Ship models faster and do more science!</strong></h2>
+</div>
+<p>Our open-source deep learning platform enables you to train models in hours and minutes, not days and weeks.</p>
+</div>
+<div class="product-summary pure-u-1 pure-u-sm-1-3">
+<div class="home-center">
+<img alt="product-summary-6.svg" src="/assets/images/home/product-summary-6.svg"/>
+<h2><strong>Focus on research and models<br/><br/></strong></h2>
+</div>
+<p>Instead of arduous tasks like manual hyperparameter tuning, re-running faulty jobs, and worrying about hardware resources.</p>
+</div>
+<div class="product-summary pure-u-1 pure-u-sm-1-3">
+<div class="home-center">
+<img alt="product-summary-3.svg" src="/assets/images/home/product-summary-3.svg"/>
+<h2><strong>Distributed training as it was meant to be</strong></h2>
+</div>
+<p>Our distributed training implementation outperforms the industry standard, requires no code changes, and is fully integrated with our state of the art training platform.</p>
+</div>
+<div class="home-center home-cta">
+<a href="/project/" onclick="trackClick('project')">
+<button class="btn btn-primary">Start now, not later</button>
+</a>
+</div>
+</div>
+<div class="home-center home-subheading">
+<h1>Share resources, experiments, and data<br/>— and do it safely.</h1>
+</div>
+<div class="product-summaries pure-g">
+<div class="product-summary pure-u-1 pure-u-sm-1-3">
+<div class="home-center">
+<img alt="real-time-experiments.svg" src="/assets/images/home/real-time-experiments.svg"/>
+<h2><strong>Real-time experiment dashboard</strong></h2>
+</div>
+<p>With built-in experiment tracking and visualization, Determined records metrics automatically, makes your ML projects reproducible, and allows your team to collaborate more easily.</p>
+</div>
+<div class="product-summary pure-u-1 pure-u-sm-1-3">
+<div class="home-center">
+<img alt="product-summary-1.svg" src="/assets/images/home/product-summary-1.svg"/>
+<h2><strong>Sophisticated checkpointing and resource scheduling</strong></h2>
+</div>
+<p>Your researchers will be able to build on the progress of their team and innovate in their domain, instead of fretting over errors and infrastructure.</p>
+</div>
+<div class="product-summary pure-u-1 pure-u-sm-1-3">
+<div class="home-center">
+<img alt="brain-icon.svg" src="/assets/images/home/brain-icon.svg"/>
+<h2><strong>Expert built for expert teams</strong></h2>
+</div>
+<p>We’re dedicated to the science of Deep Learning and are leaders in productionizing DL workflows, and we can’t wait to help your team thrive.</p>
+</div>
+<div class="home-center home-cta">
+<a href="/project/" onclick="trackClick('project')">
+<button class="btn btn-primary">Learn more</button>
+</a>
+</div>
+</div>
+<div class="home-center home-subheading">
+<h1>Your team, your infrastructure, your tools<br/>— we support it all.</h1>
+</div>
+<div class="product-summaries pure-g">
+<div class="product-summary pure-u-1 pure-u-sm-1-3">
+<div class="home-center">
+<img alt="product-summary-4.svg" src="/assets/images/home/product-summary-4.svg"/>
+<h2><strong>Serious compatibility</strong></h2>
+</div>
+<p>Determined works with the leading deep learning frameworks— PyTorch, TensorFlow, and Keras. We support a variety of data storage systems, and make it easy to export models to downstream serving systems.</p>
+</div>
+<div class="product-summary pure-u-1 pure-u-sm-1-3">
+<div class="home-center">
+<img alt="any-infra.svg" src="/assets/images/home/any-infra.svg"/>
+<h2><strong>Your infrastructure, your choice</strong></h2>
+</div>
+<p>Our platform integrates with your hardware, whether you’re in the cloud or on-premises.</p>
+</div>
+<div class="product-summary pure-u-1 pure-u-sm-1-3">
+<div class="home-center">
+<img alt="product-summary-2.svg" src="/assets/images/home/product-summary-2.svg"/>
+<h2><strong>Get the most out of your hardware</strong></h2>
+</div>
+<p>Determined enables all of your training-related workloads to run seamlessly on the same machines.</p>
+</div>
+<div class="home-center home-cta">
+<a href="/project/" onclick="trackClick('project')">
+<button class="btn btn-primary">See how it works</button>
+</a>
+</div>
+</div>
+</div>
+
+<section class="bg-light">
+<div class="center">
+<h1>What our users have to say</h1>
+<div class="spacer-md"></div>
+</div>
+<div class="quotes">
+<div class="quote-wrapper" id="quote-1">
+<div class="container">
+<img class="quote-start" src="/assets/images/home/quotes66.svg"/>
+<div class="quote">
+<h4>Before Determined, we had to rely on group chat to ask if GPUs are free -- it was chaos! Determined makes GPU management easy, plus I love that it includes HP search and experiment tracking in a reliable and easy-to-use platform.</h4>
+<p></p>
+</div>
+<img class="quote-end" src="/assets/images/home/quotes99.svg"/>
+</div>
+</div>
+<div class="button-wrapper" id="wrapper-1">
+<button id="button-1" onclick="newQuote(`1`)">
+<img src="/assets/images/home/deka.png"/>
+<div>
+<h4>Sagar Bhonde</h4>
+<p>DEKA</p>
+</div>
+</button>
+</div>
+<div class="quote-wrapper active" id="quote-2">
+<div class="container">
+<img class="quote-start" src="/assets/images/home/quotes66.svg"/>
+<div class="quote">
+<h4>We've been impressed with the tools provided within Determined but what's most important to me is that we have a GPU resource management solution that allows me to continue to be a researcher instead of a system administrator.</h4>
+<p></p>
+</div>
+<img class="quote-end" src="/assets/images/home/quotes99.svg"/>
+</div>
+</div>
+<div class="button-wrapper active" id="wrapper-2">
+<button id="button-2" onclick="newQuote(`2`)">
+<img src="/assets/images/home/CACI.png"/>
+<div>
+<h4>Jonathan</h4>
+<p>Defense Contractor</p>
+</div>
+</button>
+</div>
+<div class="quote-wrapper" id="quote-3">
+<div class="container">
+<img class="quote-start" src="/assets/images/home/quotes66.svg"/>
+<div class="quote">
+<h4>By adopting Determined AI’s software platform, our team of deep learning engineers has been able to rapidly deliver new, advanced, Industrial IoT products to our customers. We’re delivering new AI features 10 times faster than before.</h4>
+<p></p>
+</div>
+<img class="quote-end" src="/assets/images/home/quotes99.svg"/>
+</div>
+</div>
+<div class="button-wrapper" id="wrapper-3">
+<button id="button-3" onclick="newQuote(`3`)">
+<img src="/assets/images/home/compology.png"/>
+<div>
+<h4>Ben Chehebar</h4>
+<p>Compology</p>
+</div>
+</button>
+</div>
+</div>
+<script type="text/javascript">
+	function newQuote(id) {
+		var quotes = document.getElementsByClassName('quote-wrapper');
+		for (var quote of quotes){
+			quote.classList.remove('active');
+		}
+		var buttons = document.getElementsByClassName('button-wrapper');
+		for (var button of buttons){
+			button.classList.remove('active');
+		}
+		let targetquote = document.getElementById(`quote-${id}`);
+		targetquote.classList.add('active');
+		let targetButton = document.getElementById(`wrapper-${id}`);
+		targetButton.classList.add('active');
+
+	}
+</script>
+<div class="spacer"></div>
+<div class="container">
+<div class="recent-blogs">
+<h1>Recent Posts</h1>
+<div class="blogs pure-g">
+<div class="blog pure-u-1 pure-u-sm-1-3">
+<div class="blog-content">
+<div class="upper-content">
+<div class="all-caps">FEB 20, 2023</div>
+<h2><a href="/blog/determined-hackathon">Determined AI Hackathon – Now Open!</a></h2>
+</div>
+<div class="lower-content">
+<a class="all-caps font-primary" href="/blog/determined-hackathon">READ MORE <i class="fas fa-chevron-right secondary"></i></a>
+</div>
+</div>
+</div>
+<div class="blog pure-u-1 pure-u-sm-1-3">
+<div class="blog-content">
+<div class="upper-content">
+<div class="all-caps">FEB 13, 2023</div>
+<h2><a href="/blog/intro-to-core-api-pt2">Intro to Core API: Part 2 (Training a Model on MNIST)</a></h2>
+</div>
+<div class="lower-content">
+<a class="all-caps font-primary" href="/blog/intro-to-core-api-pt2">READ MORE <i class="fas fa-chevron-right secondary"></i></a>
+</div>
+</div>
+</div>
+<div class="blog pure-u-1 pure-u-sm-1-3">
+<div class="blog-content">
+<div class="upper-content">
+<div class="all-caps">NOV 29, 2022</div>
+<h2><a href="/blog/intro-to-determined">Intro to Determined: A First Time User's Guide</a></h2>
+</div>
+<div class="lower-content">
+<a class="all-caps font-primary" href="/blog/intro-to-determined">READ MORE <i class="fas fa-chevron-right secondary"></i></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<footer>
+<div class="container">
+<div class="pure-g">
+<div class="pure-u-1 pure-u-sm-1-2">
+<div class="copyright-content">
+<div class="logo">
+<img alt="Determined AI Logo" src="/assets/images/logo-alone-transparent-crop.png"/>
+</div>
+<div class="copyright caption desktop">
+<div class="social-btns">
+<a class="social-btn" href="https://twitter.com/DeterminedAI" target="_blank">
+<img alt="twitter" src="/assets/images/Social_TW.svg"/>
+</a>
+<a class="social-btn" href="https://www.linkedin.com/company/determined-ai" target="_blank">
+<img alt="linkedin" src="/assets/images/Social_IN.svg"/>
+</a>
+</div>
+<div>
+<i class="far fa-copyright"></i> 2023 Determined AI. All rights reserved.
+            </div>
+</div>
+</div>
+</div>
+<div class="pure-u-1 pure-u-sm-1-2">
+<div class="pure-g">
+<div class="pure-u-1-2 pure-u-sm-1-3 link-wrap">
+<a class="all-caps link" href="/project/">Project</a>
+</div>
+<div class="pure-u-1-2 pure-u-sm-1-3 link-wrap">
+<a class="all-caps link" href="/careers/">Careers</a>
+</div>
+<div class="pure-u-1-2 pure-u-sm-1-3 link-wrap">
+<a class="all-caps link" href="/contact/">Contact</a>
+</div>
+<div class="pure-u-1-2 pure-u-sm-1-3 link-wrap">
+<a class="all-caps link" href="https://docs.determined.ai/latest/">Docs</a>
+</div>
+<div class="pure-u-1-2 pure-u-sm-1-3 link-wrap">
+<a class="all-caps link" href="/blog/">Blog</a>
+</div>
+<div class="pure-u-1-2 pure-u-sm-1-3 link-wrap">
+<a class="all-caps link" href="/privacy/">Privacy</a>
+</div>
+</div>
+</div>
+<div class="pure-u-1">
+<div class="copyright caption mobile">
+<div class="social-btns">
+<a class="social-btn" href="https://twitter.com/DeterminedAI" target="_blank">
+<img alt="twitter" src="/assets/images/Social_TW.svg"/>
+</a>
+<a class="social-btn" href="https://www.linkedin.com/company/determined-ai" target="_blank">
+<img alt="linkedin" src="/assets/images/Social_IN.svg"/>
+</a>
+</div>
+<div>
+<i class="far fa-copyright"></i> 2023 Determined AI. All rights reserved.
+          </div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script crossorigin="anonymous" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/assets/js/main.js"></script>
+<script type="text/javascript">
+      var DID=258260;
+    </script>
+<script async="" src="//stats.sa-as.com/live.js"></script>
+</body>
+</html>

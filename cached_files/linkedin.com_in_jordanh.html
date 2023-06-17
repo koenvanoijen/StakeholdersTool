@@ -1,0 +1,52 @@
+https://www.linkedin.com/in/jordanh
+<html><head>
+<script type="text/javascript">
+window.onload = function() {
+
+ // treat .cn similar to .com here
+  var domain = location.host;
+  if (domain != "www.linkedin.com" && domain != "www.linkedin.cn") {
+    var subdomainIndex = location.host.indexOf(".linkedin");
+    if (subdomainIndex !== -1) {
+      domain = "www" + location.host.substring(subdomainIndex);
+    }
+  }
+
+  var challengeId = "";
+  var referrer = "";
+  var cookies = document.cookie.split("; ");
+  for (var i = 0; i < cookies.length; ++i) {
+    if ((cookies[i].indexOf("li_cu=") === 0) && (cookies[i].length > 6)) {
+      challengeId = cookies[i].substring(6);
+      if (challengeId !== "") {
+        document.cookie = "li_cu=; expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/";
+      }
+    }
+    if ((cookies[i].indexOf("fid=") === 0) && (cookies[i].length > 4)) {
+      var fid = cookies[i].substring(4);
+      if (fid !== "") {
+       var removeCookie = "fid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/";
+        document.cookie = removeCookie;
+        document.cookie = removeCookie + "; Domain=." + window.location.host;
+      }
+    }
+    if ((cookies[i].indexOf("li_referer=") === 0) && (cookies[i].length > 11)) {
+      referrer = cookies[i].substring(11);
+      if (referrer !== "") {
+      document.cookie = "li_referer=; expires=Thu, 01 Jan 1970 00:00:00 UTC; Path=/";
+      }
+    }
+  }
+
+  if (challengeId !== "") {
+  // check if referer is empty string before adding the referer
+    if (referrer !== "")
+    {
+      window.location.href = "https://" + domain + "/checkpoint" + challengeId + '?original_referer=' + encodeURIComponent(referrer);
+    } else {
+      window.location.href = "https://" + domain + "/checkpoint" + challengeId;
+    }
+  }
+}
+</script>
+</head></html>

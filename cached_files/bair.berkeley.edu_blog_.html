@@ -1,0 +1,444 @@
+https://bair.berkeley.edu/blog/
+<!DOCTYPE html>
+
+<html prefix="og: http://ogp.me/ns#">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<title>The Berkeley Artificial Intelligence Research Blog</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="The BAIR Blog" name="description"/>
+<meta content="Daniel Seita" name="author"/>
+<link href="http://bair.berkeley.edu/blog/" rel="canonical"/>
+<link href="/blog/feed.xml" rel="alternate" title="RSS Feed for The Berkeley Artificial Intelligence Research Blog" type="application/rss+xml">
+<link href="/blog/css/pixyll.css?202305242205" rel="stylesheet" type="text/css"/>
+<link href="/blog/css/bair-blog.css" rel="stylesheet" type="text/css"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic" rel="stylesheet" type="text/css"/>
+<link href="https://fonts.googleapis.com/css?family=Lato:900,300" rel="stylesheet" type="text/css"/>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
+<!-- Open Graph -->
+<!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+<meta content="en_US" property="og:locale"/>
+<meta content="article" property="og:type"/>
+<meta content="The Berkeley Artificial Intelligence Research Blog" property="og:title"/>
+<meta content="The BAIR Blog" property="og:description"/>
+<meta content="http://bair.berkeley.edu/blog/" property="og:url"/>
+<meta content="The Berkeley Artificial Intelligence Research Blog" property="og:site_name"/>
+<meta content="http://bair.berkeley.edu/blog/assets/BAIR_Logo.png" property="og:image">
+<meta content="http://bair.berkeley.edu/blog/assets/BAIR_Logo.png" property="og:image:url">
+<script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+          processEscapes: true
+        },
+        messageStyle: "none",
+        "HTML-CSS": { availableFonts: ["TeX"] }
+      });
+    </script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js" type="text/javascript">
+</script>
+<!-- Daniel Seita: I added this to handle Samaneh's post. -->
+<script type="text/javascript">
+    function update_im_font1(option_font) {
+        document.getElementById("im_font1").src="http://bair.berkeley.edu/static/blog/mcgan/"+option_font+".png";
+    }
+    function update_im_font2(option_font) {
+        document.getElementById("im_font2").src="http://bair.berkeley.edu/static/blog/mcgan/"+option_font+".png";
+    }
+    function update_im_font3(option_font) {
+        document.getElementById("im_font3").src="http://bair.berkeley.edu/static/blog/mcgan/"+option_font+".png";
+    }
+    function update_im_font4(option_font) {
+        document.getElementById("im_font4").src="http://bair.berkeley.edu/static/blog/mcgan/"+option_font+".png";
+    }
+    </script>
+</meta></meta></link></head>
+<body class="site">
+<div class="site-wrap">
+<header class="site-header px2 px-responsive">
+<div class="mt2 wrap">
+<div class="measure">
+<div class="blog-logo-container">
+<a href="/blog/"><img class="bair-logo" src="/blog/assets/BAIR_Logo.png"/></a>
+</div>
+<nav class="site-nav bair-blog-site-nav">
+<a href="/blog/subscribe/">Subscribe</a>
+<a href="/blog/about/">About</a>
+<a href="/blog/archive/">Archive</a>
+<a href="http://bair.berkeley.edu">BAIR</a>
+</nav>
+<div class="clearfix"></div>
+</div>
+</div>
+</header>
+<div class="post p2 p-responsive wrap" role="main">
+<div class="measure">
+<div class="home">
+<div class="posts">
+<div class="post">
+<h1 class="h1 post-title">
+<center>
+<a class="post-link" href="/blog/2023/05/23/lmd/">GPT-4 + Stable-Diffusion = ?: Enhancing Prompt Understanding of Text-to-Image Diffusion Models with Large Language Models</a>
+</center>
+</h1>
+<p class="post-summary">
+<h5><center>
+<span class="post-meta"><a href="https://tonylian.com/">Long Lian</a>, <a href="https://sites.google.com/site/boyilics/home">Boyi Li</a>, <a href="https://www.adamyala.org/">Adam Yala</a>, and <a href="https://people.eecs.berkeley.edu/~trevor/">Trevor Darrell</a></span>
+          
+      <span class="post-meta">May 23, 2023</span>
+</center></h5>
+<br/>
+<!-- twitter -->
+<meta content="GPT-4 + Stable-Diffusion = ?: Enhancing Prompt Understanding of Text-to-Image Diffusion Models with Large Language Models" name="twitter:title">
+<meta content="summary_large_image" name="twitter:card">
+<meta content="assets/lmd/main.jpg" name="twitter:image">
+<meta content="gpt-4, stable diffusion, llm, text-to-image, diffusion models, large language models, prompt understanding" name="keywords">
+<meta content="The BAIR Blog" name="description">
+<meta content="Long Lian, Boyi Li, Adam Yala, Trevor Darrell" name="author">
+<p><strong>TL;DR</strong>: Text Prompt -&gt; LLM -&gt; Intermediate Representation (such as an image layout) -&gt; Stable Diffusion -&gt; Image.</p>
+<p>Recent advancements in text-to-image generation with diffusion models have yielded remarkable results synthesizing highly realistic and diverse images. However, despite their impressive capabilities, diffusion models, such as <a href="https://arxiv.org/abs/2112.10752">Stable Diffusion</a>, often struggle to accurately follow the prompts when spatial or common sense reasoning is required.</p>
+<p>The following figure lists four scenarios in which Stable Diffusion falls short in generating images that accurately correspond to the given prompts, namely <strong>negation</strong>, <strong>numeracy</strong>, and <strong>attribute assignment</strong>, <strong>spatial relationships</strong>. In contrast, our method, <strong>L</strong>L<strong>M</strong>-grounded <strong>D</strong>iffusion (<strong>LMD</strong>), delivers much better prompt understanding in text-to-image generation in those scenarios.</p>
+<p style="text-align:center">
+<img alt="Visualizations" src="https://bair.berkeley.edu/static/blog/lmd/visualizations.jpg" width="95%"/>
+<b><i>Figure 1: LLM-grounded Diffusion enhances the prompt understanding ability of text-to-image diffusion models.</i></b>
+</p>
+<a href="/blog/2023/05/23/lmd/">Continue</a>
+</meta></meta></meta></meta></meta></meta></p>
+</div>
+<div class="post">
+<h1 class="h1 post-title">
+<center>
+<a class="post-link" href="/blog/2023/04/06/ifl/">Interactive Fleet Learning</a>
+</center>
+</h1>
+<p class="post-summary">
+<h5><center>
+<span class="post-meta"><a href="https://ryanhoque.github.io">Ryan Hoque</a></span>
+          
+      <span class="post-meta">Apr 6, 2023</span>
+</center></h5>
+<br/>
+<!-- twitter -->
+<meta content="Interactive Fleet Learning" name="twitter:title">
+<meta content="summary_large_image" name="twitter:card">
+<meta content="assets/ifl/image1.jpeg" name="twitter:image">
+<meta content="fleet learning, interactive learning, robotics" name="keywords"/>
+<meta content="The BAIR Blog" name="description"/>
+<meta content="Ryan Hoque" name="author"/>
+<p style="text-align:center;">
+<img src="https://bair.berkeley.edu/static/blog/ifl/figure1.gif" width="75%"/>
+<br>
+<i>Figure 1: âInteractive Fleet Learningâ (IFL) refers to robot fleets in industry and academia that fall back on human teleoperators when necessary and continually learn from them over time.</i>
+</br></p>
+<p>In the last few years we have seen an exciting development in robotics and artificial intelligence: large fleets of robots have left the lab and entered the real world. <a href="https://waymo.com/">Waymo</a>, for example, has over 700 self-driving cars operating in Phoenix and San Francisco and is <a href="https://blog.waymo.com/2022/10/next-stop-for-waymo-one-los-angeles.html">currently expanding to Los Angeles</a>. Other industrial deployments of robot fleets include applications like e-commerce order fulfillment at <a href="https://www.amazon.com/">Amazon</a> and <a href="https://www.ambirobotics.com/">Ambi Robotics</a> as well as food delivery at <a href="https://www.nuro.ai/">Nuro</a> and <a href="https://www.kiwibot.com/">Kiwibot</a>.</p>
+<a href="/blog/2023/04/06/ifl/">Continue</a>
+</meta></meta></meta></p>
+</div>
+<div class="post">
+<h1 class="h1 post-title">
+<center>
+<a class="post-link" href="/blog/2023/04/03/koala/">Koala: A Dialogue Model for Academic Research</a>
+</center>
+</h1>
+<p class="post-summary">
+<h5><center>
+<span class="post-meta"><a href="http://young-geng.xyz">Xinyang Geng</a>$^*$, <a href="https://www.linkedin.com/in/arnavgudibande/">Arnav Gudibande</a>$^*$, <a href="https://www.haoliu.site/">Hao Liu</a>$^*$, <a href="https://www.ericswallace.com/">Eric Wallace</a>$^*$, <a href="https://people.eecs.berkeley.edu/~pabbeel/">Pieter Abbeel</a>$^\diamond$, <a href="https://people.eecs.berkeley.edu/~svlevine/">Sergey Levine</a>$^\diamond$ and <a href="http://people.eecs.berkeley.edu/~dawnsong/">Dawn Song</a>$^\diamond$</span>
+          
+      <span class="post-meta">Apr 3, 2023</span>
+</center></h5>
+<br/>
+<!--
+These are comments in HTML. The above header text is needed to format the
+title, authors, etc. The "example_post" is an example representative image (not
+GIF) that we use for each post for tweeting (see below as well) and for the
+emails to subscribers. Please provide this image (and any other images and
+GIFs) in the blog to the BAIR Blog editors directly.
+
+The text directly below gets tweets to work. Please adjust according to your
+post.
+
+The `static/blog` directory is a location on the blog server which permanently
+stores the images/GIFs in BAIR Blog posts. Each post has a subdirectory under
+this for its images (titled `example_post` here, please change).
+
+Keeping the post visbility as False will mean the post is only accessible if
+you know the exact URL.
+
+You can also turn on Disqus comments, but we recommend disabling this feature.
+-->
+<!-- twitter -->
+<meta content="Koala: A Dialogue Model for Academic Research" name="twitter:title"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://bair.berkeley.edu/static/blog/koala/model.png" name="twitter:image"/>
+<meta content="Language Models, Dialogue Models, Chatbot" name="keywords"/>
+<meta content="The BAIR Blog" name="description"/>
+<meta content="Xinyang Geng, Arnav Gudibande, Hao Liu, Eric Wallace, Pieter Abbeel, Sergey Levine, Dawn Song" name="author"/>
+<!--
+The actual text for the post content appears below.  Text will appear on the
+homepage, i.e., https://bair.berkeley.edu/blog/ but we only show part of the
+posts on the homepage. The rest is accessed via clicking 'Continue'. This is
+enforced with the `more` excerpt separator.
+-->
+<p style="text-align:center;">
+<img src="https://bair.berkeley.edu/static/blog/koala/model.png" width="100%"/>
+</p>
+<!-- # Koala: A Dialogue Model for Academic Research -->
+<p>In this post, we introduce Koala, a chatbot trained by fine-tuning Metaâs <a href="https://ai.facebook.com/blog/large-language-model-llama-meta-ai/">LLaMA</a> on dialogue data gathered from the web. We describe the dataset curation and training process of our model, and also present the results of a user study that compares our model to <a href="https://openai.com/blog/chatgpt">ChatGPT</a> and <a href="https://crfm.stanford.edu/2023/03/13/alpaca.html">Stanfordâs Alpaca</a>. Our results show that Koala can effectively respond to a variety of user queries, generating responses that are often preferred over Alpaca, and at least tied with ChatGPT in over half of the cases.</p>
+<p>We hope that these results contribute further to the discourse around the relative performance of large closed-source models to smaller public models. In particular, it suggests that models that are small enough to be run locally can capture much of the performance of their larger cousins if trained on carefully sourced data. This might imply, for example, that the community should put more effort into curating high-quality datasets, as this might do more to enable safer, more factual, and more capable models than simply increasing the size of existing systems. We emphasize that Koala is a research prototype, and while we hope that its release will provide a valuable community resource, it still has major shortcomings in terms of content, safety, and reliability, and should not be used outside of research.</p>
+<ul>
+<li><a href="https://koala.lmsys.org">Online interactive demo</a></li>
+<li><a href="https://github.com/young-geng/EasyLM">EasyLM: training and serving framework</a></li>
+<li><a href="https://drive.google.com/drive/folders/10f7wrlAFoPIy-TECHsx9DKIvbQYunCfl?usp=sharing">Koala model weights diff agaist base LLaMA</a></li>
+</ul>
+<a href="/blog/2023/04/03/koala/">Continue</a>
+</p>
+</div>
+<div class="post">
+<h1 class="h1 post-title">
+<center>
+<a class="post-link" href="/blog/2023/01/20/relmm/">Fully Autonomous Real-World Reinforcement Learning with Applications to Mobile Manipulation</a>
+</center>
+</h1>
+<p class="post-summary">
+<h5><center>
+<span class="post-meta"><a href="https://jorbik.info/">JÄdrzej Orbik</a>, <a href="https://charlesjsun.github.io/">Charles Sun</a>, <a href="https://cdevin.github.io/">Coline Devin</a>, <a href="https://www.fracturedplane.com/">Glen Berseth</a></span>
+          
+      <span class="post-meta">Jan 20, 2023</span>
+</center></h5>
+<br/>
+<!-- twitter -->
+<meta content="Fully Autonomous Real-World Reinforcement Learning with Applications to Mobile Manipulation" name="twitter:title"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="assets/relmm/title.png" name="twitter:image"/>
+<meta content="mobile manipulation, reinforcement learning, reset-free" name="keywords"/>
+<meta content="The BAIR Blog" name="description"/>
+<meta content="JÄdrzej Orbik, Charles Sun, Coline Devin, Glen Berseth" name="author"/>
+<p>Reinforcement learning provides a conceptual framework for autonomous agents to learn from experience, analogously to how one might train a pet with treats. But practical applications of reinforcement learning are often far from natural: instead of using RL to learn through trial and error by actually attempting the desired task, typical RL applications use a separate (usually simulated) training phase. For example, <a href="https://deepmind.com/research/case-studies/alphago-the-story-so-far">AlphaGo</a> did not learn to play Go by competing against thousands of humans, but rather by playing against itself in simulation. While this kind of simulated training is appealing for games where the rules are perfectly known, applying this to real world domains such as robotics can require a range of complex approaches, such as <a href="https://www.youtube.com/watch?v=XUW0cnvqbwM">the use of simulated data</a>, or instrumenting real-world environments in various ways to make training feasible <a href="https://bair.berkeley.edu/blog/2020/04/27/ingredients/">under laboratory conditions</a>. Can we instead devise reinforcement learning systems for robots that allow them to learn directly âon-the-jobâ, while performing the task that they are required to do? In this blog post, we will discuss ReLMM, a system that we developed that learns to clean up a room directly with a real robot via continual learning.</p>
+<p style="text-align:center;">
+<img src="https://bair.berkeley.edu/static/blog/relmm/image8.gif" width="48%"/>
+<img src="https://bair.berkeley.edu/static/blog/relmm/image12.gif" width="48%"/>
+<img src="https://bair.berkeley.edu/static/blog/relmm/image3.gif" width="48%"/>
+<img src="https://bair.berkeley.edu/static/blog/relmm/image2.gif" width="48%"/>
+<br>
+<i>We evaluate our method on different tasks that range in difficulty. The top-left task has uniform white blobs to pickup with no obstacles, while other rooms have objects of diverse shapes and colors, obstacles that increase navigation difficulty and obscure the objects and patterned rugs that make it difficult to see the objects against the ground.</i>
+</br></p>
+<a href="/blog/2023/01/20/relmm/">Continue</a>
+</p>
+</div>
+<div class="post">
+<h1 class="h1 post-title">
+<center>
+<a class="post-link" href="/blog/2022/09/19/ldm-control/">Keeping Learning-Based Control Safe by Regulating Distributional Shift</a>
+</center>
+</h1>
+<p class="post-summary">
+<h5><center>
+<span class="post-meta"><a href="http://katiekang.com/">Katie Kang</a></span>
+          
+      <span class="post-meta">Sep 19, 2022</span>
+</center></h5>
+<br/>
+<p style="text-align:center;">
+<img src="https://bair.berkeley.edu/static/blog/ldm-control/header.jpg" width="80%"/>
+<br>
+<i> To regulate the distribution shift experience by learning-based controllers, we seek a mechanism for constraining the agent to regions of high data density throughout its trajectory (left). Here, we present an approach which achieves this goal by combining features of density models (middle) and Lyapunov functions (right).</i>
+</br></p>
+<p>In order to make use of machine learning and reinforcement learning in controlling real world systems, we must design algorithms which not only achieve good performance, but also interact with the system in a safe and reliable manner. Most prior work on safety-critical control focuses on maintaining the safety of the <em>physical  system</em>, e.g. avoiding falling over for legged robots, or colliding into obstacles for autonomous vehicles. However, for learning-based controllers, there is another source of safety concern: because machine learning models are only optimized to output correct predictions on the training data, they are prone to outputting erroneous predictions when evaluated on out-of-distribution inputs. Thus, if an agent visits a state or takes an action that is very different from those in the training data, a learning-enabled controller may âexploitâ the inaccuracies in its learned component and output actions that are suboptimal or even dangerous.</p>
+<a href="/blog/2022/09/19/ldm-control/">Continue</a>
+</p>
+</div>
+<div class="post">
+<h1 class="h1 post-title">
+<center>
+<a class="post-link" href="/blog/2022/08/29/reverse-engineering/">Reverse engineering the NTK: towards first-principles architecture design</a>
+</center>
+</h1>
+<p class="post-summary">
+<h5><center>
+<span class="post-meta"><a href="https://james-simon.github.io/">Jamie Simon</a></span>
+          
+      <span class="post-meta">Aug 29, 2022</span>
+</center></h5>
+<br/>
+<!-- twitter -->
+<meta content="Reverse engineering the NTK: towards first-principles architecture design" name="twitter:title"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://bair.berkeley.edu/static/blog/reverse-engineering/rev_eng_fig1.png" name="twitter:image"/>
+<meta content="ntk,kernels,infinite width,neural architecture design,activation function,ReLU" name="keywords"/>
+<meta content="The BAIR Blog" name="description"/>
+<meta content="Jamie Simon" name="author"/>
+<p>Deep neural networks have enabled technological wonders ranging from voice recognition to machine transition to protein engineering, but their design and application is nonetheless notoriously unprincipled.
+The development of tools and methods to guide this process is one of the grand challenges of deep learning theory.
+In <a href="https://arxiv.org/abs/2106.03186">Reverse Engineering the Neural Tangent Kernel</a>, we propose a paradigm for bringing some principle to the art of architecture design using recent theoretical breakthroughs: first design a good kernel function â often a much easier task â and then âreverse-engineerâ a net-kernel equivalence to translate the chosen kernel into a neural network.
+Our main theoretical result enables the design of activation functions from first principles, and we use it to create one activation function that mimics deep \(\textrm{ReLU}\) network performance with just one hidden layer and another that soundly outperforms deep \(\textrm{ReLU}\) networks on a synthetic task.</p>
+<p style="text-align:center;">
+<img src="https://bair.berkeley.edu/static/blog/ntk-reveng/rev_eng_fig1.png" width="80%"/>
+</p>
+<p style="margin-left:10%; margin-right:10%;">
+<!-- <small> -->
+<i> <b>Kernels back to networks.</b> Foundational works derived formulae that map from wide neural networks to their corresponding kernels. We obtain an inverse mapping, permitting us to start from a desired kernel and turn it back into a network architecture. </i>
+<!-- </small> -->
+</p>
+<a href="/blog/2022/08/29/reverse-engineering/">Continue</a>
+</p>
+</div>
+<div class="post">
+<h1 class="h1 post-title">
+<center>
+<a class="post-link" href="/blog/2022/07/10/pg-ar/">Why do Policy Gradient Methods work so well in Cooperative MARL? Evidence from Policy Representation</a>
+</center>
+</h1>
+<p class="post-summary">
+<h5><center>
+<span class="post-meta">Wei Fu, Chao Yu, Zelai Xu, <a href="https://jiaqiyang.com/">Jiaqi Yang</a>, <a href="https://jxwuyi.weebly.com/">Yi Wu</a></span>
+          
+      <span class="post-meta">Jul 10, 2022</span>
+</center></h5>
+<br/>
+<!-- twitter -->
+<meta content="Why do Policy Gradient Methods work so well in Cooperative MARL? Evidence from Policy Representation" name="twitter:title"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="assets/pg-ar/ar.png" name="twitter:image"/>
+<meta content="multi-agent, reinforcement learning, policy gradient" name="keywords"/>
+<meta content="The BAIR Blog" name="description"/>
+<meta content="Wei Fu, Chao Yu, Jiaqi Yang, Yi Wu" name="author"/>
+<p>In cooperative multi-agent reinforcement learning (MARL), due to its <em>on-policy</em> nature, policy gradient (PG) methods are typically believed to be less sample efficient than value decomposition (VD) methods, which are <em>off-policy</em>. However, some <a href="https://arxiv.org/abs/2103.01955">recent</a> <a href="https://arxiv.org/abs/2011.09533">empirical</a> <a href="https://arxiv.org/abs/2006.07869">studies</a> demonstrate that with proper input representation and hyper-parameter tuning, multi-agent PG can achieve <a href="http://bair.berkeley.edu/blog/2021/07/14/mappo/">surprisingly strong performance</a> compared to off-policy VD methods.</p>
+<p><strong>Why could PG methods work so well?</strong> In this post, we will present concrete analysis to show that in certain scenarios, e.g., environments with a highly multi-modal reward landscape, VD can be problematic and lead to undesired outcomes. By contrast, PG methods with individual policies can converge to an optimal policy in these cases. In addition, PG methods with auto-regressive (AR) policies can learn multi-modal policies.</p>
+<p style="text-align:center;">
+<img src="https://bair.berkeley.edu/static/blog/pg-ar/ar.png" width="80%"/>
+<br>
+<i>
+Figure 1: different policy representation for the 4-player permutation game.
+</i>
+</br></p>
+<a href="/blog/2022/07/10/pg-ar/">Continue</a>
+</p>
+</div>
+<div class="post">
+<h1 class="h1 post-title">
+<center>
+<a class="post-link" href="/blog/2022/06/30/figs/">FIGS: Attaining XGBoost-level performance with the interpretability and speed of CART</a>
+</center>
+</h1>
+<p class="post-summary">
+<h5><center>
+<span class="post-meta"><a href="https://csinva.io/">Chandan Singh</a> and <a href="https://sites.google.com/view/yanshuotan/home">Yan Shuo Tan</a> and <a href="https://binyu.stat.berkeley.edu/">Bin Yu</a></span>
+          
+      <span class="post-meta">Jun 30, 2022</span>
+</center></h5>
+<br/>
+<!-- twitter -->
+<meta content="FIGS: Attaining XGBoost-level performance =with the interpretability and speed of CART" name="twitter:title"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://bair.berkeley.edu/static/blog/figs/figs_intro.gif" name="twitter:image"/>
+<meta content="figs,interpretability,trees,imodels" name="keywords"/>
+<meta content="The BAIR Blog" name="description"/>
+<meta content="Chandan Singh, Yan Shuo Tan, Bin Yu" name="author"/>
+<p style="text-align:center;">
+<a href="https://arxiv.org/abs/2201.11931"><img src="https://bair.berkeley.edu/static/blog/figs/figs_intro.gif" width="90%"/></a>
+<br>
+<b>FIGS (Fast Interpretable Greedy-tree Sums): </b><i>A method for building interpretable models by simultaneously growing an ensemble of decision trees in competition with one another.</i>
+</br></p>
+<p>Recent machine-learning advances have led to increasingly complex predictive models, often at the cost of interpretability. We often need interpretability, particularly in high-stakes applications such as in clinical decision-making; interpretable models help with all kinds of things, such as identifying errors, leveraging domain knowledge, and making speedy predictions.</p>
+<p>In this blog post weâll cover <a href="https://arxiv.org/abs/2201.11931">FIGS</a>, a new method for fitting an <em>interpretable model</em> that takes the form of a sum of trees. Real-world experiments and theoretical results show that FIGS can effectively adapt to a wide range of structure in data, achieving state-of-the-art performance in several settings, all without sacrificing interpretability.</p>
+<a href="/blog/2022/06/30/figs/">Continue</a>
+</p>
+</div>
+<div class="post">
+<h1 class="h1 post-title">
+<center>
+<a class="post-link" href="/blog/2022/05/20/crosswords/">The Berkeley Crossword Solver</a>
+</center>
+</h1>
+<p class="post-summary">
+<h5><center>
+<span class="post-meta"><a href="https://www.ericswallace.com">Eric Wallace</a>, <a href="https://people.eecs.berkeley.edu/~nicholas_tomlin/">Nicholas Tomlin</a>, <a href="https://albertxu.xyz">Albert Xu</a>, <a href="https://people.eecs.berkeley.edu/~yangk/">Kevin Yang</a>, <a href="https://scholar.google.com/citations?user=aPFGsxAAAAAJ&amp;hl=en">Eshaan Pathak</a></span>
+          
+      <span class="post-meta">May 20, 2022</span>
+</center></h5>
+<br/>
+<!-- twitter -->
+<meta content="The Berkeley Crossword Solver" name="twitter:title"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://bair.berkeley.edu/static/blog/crosswords/fig1.png" name="twitter:image"/>
+<meta content="keyword1, keyword2" name="keywords"/>
+<meta content="Building the world's best automated crossword solver" name="description"/>
+<meta content="Eric Wallace, Nicholas Tomlin, Albert Xu, Kevin Yang, Eshaan Pathak" name="author"/>
+<p>We recently published the Berkeley Crossword Solver (BCS), the current state of the art for solving American-style crossword puzzles. The BCS combines neural question answering and probabilistic inference to achieve near-perfect performance on most American-style crossword puzzles, like the one shown below:</p>
+<p style="text-align:center;">
+<img src="https://bair.berkeley.edu/static/blog/crosswords/fig1.png" width="90%"/>
+<br>
+<i>
+Figure 1: Example American-style crossword puzzle
+</i>
+</br></p>
+<p>An earlier version of the BCS, in conjunction with Dr.Fill, was the first computer program to outscore all human competitors in the worldâs top crossword tournament. The most recent version is the current top-performing system on crossword puzzles from The New York Times, achieving 99.7% letter accuracy (see the <a href="https://arxiv.org/abs/2205.09665">technical paper</a>, <a href="https://berkeleycrosswordsolver.com">web demo</a>, and <a href="https://github.com/albertkx/Berkeley-Crossword-Solver">code release</a>).</p>
+<a href="/blog/2022/05/20/crosswords/">Continue</a>
+</p>
+</div>
+<div class="post">
+<h1 class="h1 post-title">
+<center>
+<a class="post-link" href="/blog/2022/05/03/human-in-the-loop/">Rethinking Human-in-the-Loop for Artificial Augmented Intelligence</a>
+</center>
+</h1>
+<p class="post-summary">
+<h5><center>
+<span class="post-meta"><a href="https://github.com/zhmiao">Zhongqi Miao</a> and <a href="https://liuziwei7.github.io/">Ziwei Liu</a></span>
+          
+      <span class="post-meta">May 3, 2022</span>
+</center></h5>
+<br/>
+<!-- twitter -->
+<meta content="Rethinking Human-in-the-Loop for Artificial Augmented Intelligence" name="twitter:title"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="https://bair.berkeley.edu/static/blog/human-in-the-loop/image3.png" name="twitter:image"/>
+<meta content="Human-in-the-loop, Artificial Augmented Intelligence, Real-world applications" name="keywords"/>
+<meta content="It is time to rethink human-in-the-loop." name="description"/>
+<meta content="Zhongqi Miao, Ziwei Liu" name="author"/>
+<!-- body -->
+<p style="text-align:center;">
+<img src="https://bair.berkeley.edu/static/blog/human-in-the-loop/image3.png" width="90%"/>
+<br>
+<i>
+Figure 1: In real-world applications, we think there exist a human-machine loop where humans and machines are mutually augmenting each other. We call it Artificial Augmented Intelligence.
+</i>
+</br></p>
+<p>How do we build and evaluate an AI system for real-world applications? In most AI research, the evaluation of AI methods involves a training-validation-testing process. The experiments usually stop when the models have good testing performance on the reported datasets because real-world data distribution is assumed to be modeled by the validation and testing data. However, real-world applications are usually more complicated than a single training-validation-testing process. The biggest difference is the ever-changing data. For example, wildlife datasets change in class composition all the time because of animal invasion, re-introduction, re-colonization, and seasonal animal movements. A model trained, validated, and tested on existing datasets can easily be broken when newly collected data contain novel species. Fortunately, we have out-of-distribution detection methods that can help us detect samples of novel species. However, when we want to expand the recognition capacity (i.e., being able to recognize novel species in the future), the best we can do is fine-tuning the models with new ground-truthed annotations. In other words, we need to incorporate human effort/annotations regardless of how the models perform on previous testing sets.</p>
+<a href="/blog/2022/05/03/human-in-the-loop/">Continue</a>
+</p>
+</div>
+</div>
+<div class="pagination clearfix mb1 mt4">
+<div class="left">
+<span class="pagination-item disabled">Newer</span>
+</div>
+<div class="right">
+<a class="pagination-item" href="/blog/page2/">Older</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="center">
+<div class="measure">
+</div>
+</footer>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-101338021-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
