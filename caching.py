@@ -71,16 +71,17 @@ def get_or_save_cached_file_in_soup_format(url_link, file_path=None):
 
     if os.path.isfile(complete_path):
         original_url, html = get_cached_file(complete_path)
-        webpage_soup = BeautifulSoup(html, "html.parser")
-        return original_url, webpage_soup
-    else:
-        response = requests.get(url_link, allow_redirects=True)
-        response.raise_for_status()  # Check if the request was successful
-        html_text = response.text
-        webpage_soup = BeautifulSoup(html_text, "html.parser")
-        print(webpage_soup)
-        save_cached_file(complete_path=complete_path, original_url=url_link, html_file=webpage_soup)
-        return url_link, webpage_soup
+        if url_link == original_url:
+            webpage_soup = BeautifulSoup(html, "html.parser")
+            return original_url, webpage_soup
+
+    #default actions, happen only if the file_path doesn't exist or the original_url not the same as requested
+    response = requests.get(url_link, allow_redirects=True)
+    response.raise_for_status()  # Check if the request was successful
+    html_text = response.text
+    webpage_soup = BeautifulSoup(html_text, "html.parser")
+    save_cached_file(complete_path=complete_path, original_url=url_link, html_file=webpage_soup)
+    return url_link, webpage_soup
 
 
 if __name__ == "__main__":
@@ -92,3 +93,5 @@ if __name__ == "__main__":
 
     print(link)
     print('hi')
+
+

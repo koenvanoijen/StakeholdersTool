@@ -68,7 +68,7 @@ def fetch_important_text_in_webpage(webpage_soup):
     """
     try:
         text_in_website = filter_text_in_html(webpage_soup)
-        text_preprocessed = Preprocess.preproccess(text_in_website)
+        text_preprocessed = [Preprocess.preproccess([line]) for line in text_in_website]
         text_preprocessed_joined = " ".join(text_preprocessed)
         return text_preprocessed_joined
 

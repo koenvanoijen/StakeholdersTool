@@ -10,7 +10,7 @@ import webscraper
 import tf_idf
 import csv
 import os
-#import caching
+import caching
 
 class Webscraper:
     """
@@ -189,11 +189,13 @@ class Webpage:
     def scan_webpage(self):
         #TODO the 2 lines of code are to make the webpage work with cashing of url_text to enhance process. however
         #TODO the code does not work in cashing, it needs a database system to work properly
-        #soup_webpage_object = caching.get_or_save_cached_file_in_soup_format(self.link_to_check, file_path="cached_files")
-        #self.preprocessed_text = webscraper.fetch_important_text_in_webpage(important_text)
+        original_cached_in_file_link, soup_webpage = caching.get_or_save_cached_file_in_soup_format(self.link_to_check,
+                                                                                            file_path="cached_files")
+        self.preprocessed_text = webscraper.fetch_important_text_in_webpage(soup_webpage)
 
-
-        self.preprocessed_text = webscraper.fetch_important_text_in_webpage_original(self.link_to_check)
+        temporary_text = webscraper.fetch_important_text_in_webpage_original(self.link_to_check)
+        if temporary_text == self.preprocessed_text:
+            print('it is the same')
         self.valid_html_text = webscraper.is_not_valid_html_text(self.preprocessed_text)
         if self.valid_html_text:
             return "link_unvalid" #continue  # text skips vectorization to prevent error
