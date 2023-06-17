@@ -83,10 +83,12 @@ def get_or_save_cached_file_in_soup_format(url_link, file_path=None):
         return url_link, webpage_soup
 
 
-url_link = "https://www.artificialintelligence-news.com/2023/06/14/european-parliament-adopts-ai-act-position/"
-#url_link = "https://www.google.nl"
-url_link = "https://www.unidis.nl"
-link, webpage = get_or_save_cached_file_in_soup_format(url_link, "cached_files")
+if __name__ == "__main__":
 
-print(link)
-print('hi')
+    url_link = "https://www.artificialintelligence-news.com/2023/06/14/european-parliament-adopts-ai-act-position/"
+    #url_link = "https://www.google.nl"
+    url_link = "https://www.unidis.nl"
+    link, webpage = get_or_save_cached_file_in_soup_format(url_link, "cached_files")
+
+    print(link)
+    print('hi')
