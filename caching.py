@@ -68,14 +68,12 @@ def get_or_save_cached_file_in_soup_format(url_link, file_path=None):
                 output: beautiful_soup object in html.parser
     """
     complete_path = get_correct_file_path_to_save(url_link=url_link, file_path=file_path)
-    print("complete_path = ", complete_path)
 
     if os.path.isfile(complete_path):
         original_url, html = get_cached_file(complete_path)
         if url_link == original_url:
             webpage_soup = BeautifulSoup(html, "html.parser")
             return original_url, webpage_soup
-
     #default actions, happen only if the file_path doesn't exist or the original_url not the same as requested
     webpage_soup = request_page.request_webpage_random_user_agent(url_link)
     save_cached_file(complete_path=complete_path, original_url=url_link, html_file=webpage_soup)
