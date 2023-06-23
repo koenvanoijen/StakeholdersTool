@@ -82,7 +82,7 @@ def get_file_path_today(path_to_save):
     output = output.format(num=i)
     return output
 
-def generate_word_cloud(positive_words, negative_words, path_to_save):
+def generate_word_cloud(positive_words, path_to_save, negative_words=None):
     """
     a function that executes the whole cell, so that it gives only a set of negative and positive words and a path to save the wordcloud
 
@@ -90,6 +90,9 @@ def generate_word_cloud(positive_words, negative_words, path_to_save):
         :param negative_words: list of negative words
         :param path_to_save: path to save wordcloud.png
     """
+    print(positive_words)
+    print(negative_words)
+    print(path_to_save)
     positive_words = make_list_of_word(positive_words)
     negative_words = make_list_of_word(negative_words)
 
@@ -98,6 +101,21 @@ def generate_word_cloud(positive_words, negative_words, path_to_save):
 
     output_path = get_file_path_today(path_to_save)
     create_wordcloud(frequencies_dict, output_path)
-    return output_path
+    return output_path, sorted(frequency_list, reverse=True, key=lambda x: x[1])
 
 print(make_list_of_word(["hello_hi", "world"]))
+
+def generate_word_cloud_from_freq(frequency_list, path_to_save):
+    """
+    a function that executes the whole cell, so that it gives only a set of negative and positive words and a path to save the wordcloud
+
+        :param positive_words: list of positive words
+        :param negative_words: list of negative words
+        :param path_to_save: path to save wordcloud.png
+    """
+
+    frequencies_dict = list_to_frequency_dict(frequency_list)
+
+    output_path = get_file_path_today(path_to_save)
+    create_wordcloud(frequencies_dict, output_path)
+    return output_path, sorted(frequency_list, reverse=True, key=lambda x: x[1])

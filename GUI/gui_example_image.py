@@ -13,6 +13,33 @@ class Mindmap():
        pass
 
 
+class ScrollableCheckBoxFrame(customtkinter.CTkScrollableFrame):
+    def __init__(self, master, item_list, command=None, **kwargs):
+        super().__init__(master, **kwargs)
+
+        self.command = command
+        self.checkbox_list = []
+        for i, item in enumerate(item_list):
+            self.add_item(item)
+
+    def add_item(self, item):
+        checkbox = customtkinter.CTkCheckBox(self, text=item)
+        checkbox.select()
+        if self.command is not None:
+            checkbox.configure(command=self.command)
+        checkbox.grid(row=len(self.checkbox_list), column=0, pady=(0, 10))
+        self.checkbox_list.append(checkbox)
+
+    def remove_item(self, item):
+        for checkbox in self.checkbox_list:
+            if item == checkbox.cget("text"):
+                checkbox.destroy()
+                self.checkbox_list.remove(checkbox)
+                return
+
+    def get_checked_items(self):
+        return [checkbox.cget("text") for checkbox in self.checkbox_list if checkbox.get() == 1]
+
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -22,6 +49,7 @@ class App(customtkinter.CTk):
         self.negative_words = list()
         self.mindmap_path_save = "test_images/mindmap{today}_{num}.png"
         self.mindmap_last_added_path = None
+        self.last_added_freq_list = list()
 
         self.title("image_example.py")
         self.geometry("1200x700")
@@ -134,7 +162,6 @@ class App(customtkinter.CTk):
 
 
 
-
         # create third frame
         self.third_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
 
@@ -169,6 +196,7 @@ class App(customtkinter.CTk):
         self.select_frame_by_name("frame_2")
         self.go_to_second_page()
 
+
     def frame_3_button_event(self):
         self.select_frame_by_name("frame_3")
 
@@ -202,10 +230,19 @@ class App(customtkinter.CTk):
         it uses worldcloud_semantcs.generate_wordcloud(positive_words, negative_words, path_to_save) to generate the wordcloud and saves it to the path_to_save
         """
 
-        self.mindmap_last_added_path = wordcloud_semants.generate_word_cloud(self.positive_words, self.negative_words, self.mindmap_path_save)
+        self.mindmap_last_added_path, self.last_added_freq_list = wordcloud_semants.generate_word_cloud(positive_words =self.positive_words,
+                                                                                                        negative_words = self.negative_words,
+                                                                                                        path_to_save= self.mindmap_path_save)
+        [print(item) for item in self.last_added_freq_list]
         self.mindmap_image = customtkinter.CTkImage(Image.open(self.mindmap_last_added_path), size=(800, 400))
         self.home_frame_large_image_label.configure(image=self.mindmap_image)
 
+    def add_item(self, item):
+        checkbox = customtkinter.CTkCheckBox(self, text=item)
+        if self.command is not None:
+            checkbox.configure(command=self.command)
+        checkbox.grid(row=len(self.checkbox_list), column=0, pady=(0, 10))
+        self.checkbox_list.append(checkbox)
 
     def go_to_second_page(self):
         """
@@ -214,6 +251,41 @@ class App(customtkinter.CTk):
         self.mindmap_image = customtkinter.CTkImage(Image.open(self.mindmap_last_added_path), size=(800, 400))
         self.second_frame_large_image_label.grid(row=0, columnspan=5, padx=20, pady=10)
         self.second_frame_large_image_label.configure(image=self.mindmap_image)
+
+
+        # create scrollable checkbox frame
+        self.scrollable_checkbox_frame = ScrollableCheckBoxFrame(master=self.second_frame,
+                                                                 width=400, height=200,
+                                                                 item_list=self.last_added_freq_list)
+
+        self.scrollable_checkbox_frame.grid(row=1, column=0, padx=15, pady=15, sticky="ns")
+
+        self.second_frame_update_mindmap_button = customtkinter.CTkButton(self.second_frame, text="Update Mindmap",
+                                                                          command=self.update_mindmap_event())
+
+        self.second_frame_update_mindmap_button.grid(row=1, column=1, padx=20, pady=10)
+
+    def update_mindmap_event(self):
+        """
+        this function is invoked when the "update mindmap" button is pressed on the second frame
+        it looks at the checked boxes and takes all the checked boxes in the page
+        """
+        selected_positive_words = []
+        print('hi')
+        for checkbox in self.scrollable_checkbox_frame.checkbox_list:
+            if checkbox.get() == 1:
+                if checkbox.cget("text")[0]:
+                    selected_positive_words.append(checkbox.cget("text")[0])
+        print('selected', selected_positive_words)
+        self.mindmap_last_added_path, self.last_added_freq_list = wordcloud_semants.generate_word_cloud_from_freq\
+            (frequency_list=selected_positive_words, path_to_save=self.mindmap_path_save)
+        self.mindmap_image = customtkinter.CTkImage(Image.open(self.mindmap_last_added_path), size=(800, 400))
+        self.second_frame_large_image_label.configure(image=self.mindmap_image)
+        #self.scrollable_checkbox_frame.destroy()
+
+
+
+
 
 if __name__ == "__main__":
     app = App()
