@@ -18,7 +18,7 @@ def clean_word(word):
         :param word: word to clean
         :return: cleaned word
     """
-    return word.replace("_", " ")
+    return "_".join(word.split()).lower()
 
 def make_list_of_word(word):
     """
@@ -42,12 +42,20 @@ def most_similar_100(positive_words: list, negative_words=None):
         return word2vec_model.most_similar(positive=make_list_of_word(positive_words),
                                            negative=make_list_of_word(negative_words), topn=100)
 
+def most_similar_rounded(word_list):
+    """
+        :param word_list: list of tuples (word, probability)
+        :return: list of tuples (word, probability) with rounded probabilities
+    """
+    return [(word, round(score,4))for word, score in word_list]
 
 def list_to_frequency_dict(frequency_list):
     """
         :param frequency_list: list of tuples (word, probability)
         :return: dictionary of words and their probabilities
     """
+    print("frequency list ",frequency_list)
+    [print(element, probability) for element, probability in frequency_list]
     return {element: probability for element, probability in frequency_list}
 
 
@@ -96,7 +104,8 @@ def generate_word_cloud(positive_words, path_to_save, negative_words=None):
     positive_words = make_list_of_word(positive_words)
     negative_words = make_list_of_word(negative_words)
 
-    frequency_list = most_similar_100(positive_words, negative_words)
+    frequency_list = most_similar_rounded(most_similar_100(positive_words, negative_words))
+
     frequencies_dict = list_to_frequency_dict(frequency_list)
 
     output_path = get_file_path_today(path_to_save)
@@ -119,3 +128,5 @@ def generate_word_cloud_from_freq(frequency_list, path_to_save):
     output_path = get_file_path_today(path_to_save)
     create_wordcloud(frequencies_dict, output_path)
     return output_path, sorted(frequency_list, reverse=True, key=lambda x: x[1])
+
+

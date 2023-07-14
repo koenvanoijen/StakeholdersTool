@@ -52,7 +52,7 @@ class App(customtkinter.CTk):
         self.last_added_freq_list = list()
 
         self.title("image_example.py")
-        self.geometry("1200x700")
+        self.geometry("1400x900")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
@@ -82,17 +82,17 @@ class App(customtkinter.CTk):
                                                              compound="left", font=customtkinter.CTkFont(size=15, weight="bold"))
         self.navigation_frame_label.grid(row=0, column=0, padx=20, pady=20)
 
-        self.home_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Home",
+        self.home_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Create Mindmap",
                                                    fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
                                                    image=self.home_image, anchor="w", command=self.home_button_event)
         self.home_button.grid(row=1, column=0, sticky="ew")
 
-        self.frame_2_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Frame 2",
+        self.frame_2_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Select words",
                                                       fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
                                                       image=self.chat_image, anchor="w", command=self.frame_2_button_event)
         self.frame_2_button.grid(row=2, column=0, sticky="ew")
 
-        self.frame_3_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Frame 3",
+        self.frame_3_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="Webscraper",
                                                       fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
                                                       image=self.add_user_image, anchor="w", command=self.frame_3_button_event)
         self.frame_3_button.grid(row=3, column=0, sticky="ew")
@@ -112,42 +112,65 @@ class App(customtkinter.CTk):
         self.home_frame_large_image_label = customtkinter.CTkLabel(self.home_frame, text="", image=self.mindmap_image)
         self.home_frame_large_image_label.grid(row=0, columnspan=5, padx=20, pady=10)
 
+        #positive words description text
+        self.text_field_description_positive_words = customtkinter.CTkTextbox(master=self.home_frame ,height=75, width=450 )
+        self.text_field_description_positive_words.grid(row=1, column=0, padx=10, pady=10)
+        self.text_field_description_positive_words.insert("0.0", 'Below you have to add the positive that you want to find the close words of. add the words one by one and press the add button.')
         #positive words
         self.input_text_field_positive_words = customtkinter.CTkEntry(master=self.home_frame,
                                                                       placeholder_text="type semantic word",
                                                                       width= 200)
-        self.input_text_field_positive_words.grid(row=1, column=0, padx=20, pady=10)
+        self.input_text_field_positive_words.grid(row=2, column=0, padx=20, pady=10)
 
         self.input_text_positive_add_button = customtkinter.CTkButton(self.home_frame,
                                                                       text="add postive word",
                                                                       compound="left",
                                                                       command=self.add_positive_words_event)
-        self.input_text_positive_add_button.grid(row=1, column=1, padx=20, pady=10)
+        self.input_text_positive_add_button.grid(row=2, column=1, padx=20, pady=10)
 
         #the outputwords that is on the second column that is just a text field
         self.output_text_positive_field = customtkinter.CTkTextbox(master=self.home_frame, height=75)
         self.output_text_positive_field.grid(row=1, column=2, padx=20, pady=10)
 
-        #negative words
+        self.clear_output_field_positive_button = customtkinter.CTkButton(self.home_frame,
+                                                                          text="clear output field",
+                                                                          compound="top",
+                                                                          command=self.clear_output_field_positive_event,
+                                                                          )
+        self.clear_output_field_positive_button.grid(row=2, column=2, padx=100, pady=10)
+
+        #negative word description text
+        self.text_field_description_negative_words = customtkinter.CTkTextbox(master=self.home_frame ,height=75, width=450 )
+        self.text_field_description_negative_words.grid(row=3, column=0, padx=10, pady=10)
+        self.text_field_description_negative_words.insert("0.0", 'Below you have to add the negative words that you want to be excluded from the mindmap. e.g. if you want to know about light have to add feather and heavy as negative words.')
+        #negative words input
         self.input_text_field_negative_words = customtkinter.CTkEntry(master=self.home_frame,
                                                                       placeholder_text="type negative semantic word",
                                                                       width=200)
-        self.input_text_field_negative_words.grid(row=2, column=0, padx=100, pady=10)
+        self.input_text_field_negative_words.grid(row=4, column=0, padx=100, pady=10)
         self.input_text_negative_add_button = customtkinter.CTkButton(self.home_frame,
                                                                       text="add negative words",
                                                                       compound="top",
                                                                       command=self.add_negative_words_event)
-        self.input_text_negative_add_button.grid(row=2, column=1, padx=100, pady=10)
+        self.input_text_negative_add_button.grid(row=4, column=1, padx=100, pady=10)
+
 
         # the outputwords that is on the second column that is just a text field
         self.output_text_negative_field = customtkinter.CTkTextbox(master=self.home_frame, height=75)
-        self.output_text_negative_field.grid(row=2, column=2, padx=20, pady=10)
+
+        self.output_text_negative_field.grid(row=3, column=2, padx=20, pady=10)
+
+        self.clear_output_field_negative_button = customtkinter.CTkButton(self.home_frame,
+                                                                          text="clear output field",
+                                                                          compound="top",
+                                                                          command=self.clear_output_field_negative_event)
+        self.clear_output_field_negative_button.grid(row=4, column=2, padx=100, pady=10)
 
         #generate mindmap
         self.home_frame_generate_mindmap = customtkinter.CTkButton(self.home_frame,
                                                                    text="Generate Mindmap",
                                                                    command=self.generate_event)
-        self.home_frame_generate_mindmap.grid(row=3, column=0, padx=20, pady=10)
+        self.home_frame_generate_mindmap.grid(row=5, column=0, padx=20, pady=10)
 
 
 
@@ -222,6 +245,20 @@ class App(customtkinter.CTk):
         self.input_text_field_negative_words.delete(0, "end")
         self.output_text_negative_field.insert("end", self.negative_words[-1] + "\n")
 
+    def clear_output_field_positive_event(self):
+        """
+        clears the output_text_positive_field
+        """
+        self.output_text_positive_field.delete("1.0", "end")
+        self.positive_words = []
+
+    def clear_output_field_negative_event(self):
+        """
+        clears the output_text_negative_field
+        """
+        self.output_text_negative_field.delete("1.0", "end")
+        self.negative_words = []
+
     def generate_event(self):
 
         """
@@ -253,17 +290,47 @@ class App(customtkinter.CTk):
         self.second_frame_large_image_label.configure(image=self.mindmap_image)
 
 
+
         # create scrollable checkbox frame
         self.scrollable_checkbox_frame = ScrollableCheckBoxFrame(master=self.second_frame,
-                                                                 width=400, height=200,
-                                                                 item_list=self.last_added_freq_list)
+                                                                 width=500, height=200,
+                                                                 label_text="Words included in wordcloud",
+                                                                item_list= self.last_added_freq_list, label_anchor="w")
 
         self.scrollable_checkbox_frame.grid(row=1, column=0, padx=15, pady=15, sticky="ns")
+        self.scrollable_checkbox_frame.configure(width=500)
+
+        self.scrollable_radiobutton_frame = ScrollableCheckBoxFrame(master=self.second_frame, width=500, height=200,
+                                                                       item_list=[f"item {i}" for i in range(100)],
+                                                                       label_text="ScrollableRadiobuttonFrame")
+        self.scrollable_radiobutton_frame.grid(row=1, column=2, padx=15, pady=15, sticky="ns")
+        self.scrollable_radiobutton_frame.configure(width=200)
 
         self.second_frame_update_mindmap_button = customtkinter.CTkButton(self.second_frame, text="Update Mindmap",
-                                                                          command=self.update_mindmap_event())
+                                                                          command=self.update_mindmap_event)
 
         self.second_frame_update_mindmap_button.grid(row=1, column=1, padx=20, pady=10)
+
+    def go_to_third_page(self):
+        """
+        this function is invoked when the "frame_3" button is pressed
+        """
+        self.mindmap_image = customtkinter.CTkImage(Image.open(self.mindmap_last_added_path), size=(800, 400))
+        self.second_frame_large_image_label.grid(row=0, columnspan=5, padx=20, pady=10)
+        self.second_frame_large_image_label.configure(image=self.mindmap_image)
+
+        # create scrollable checkbox frame
+
+
+
+    def create_correct_words_in_scrollable_frame(self, word_feq_list):
+        """
+        this function creates a list of words that all have the same legth so that they fit nicely in the scrollable frame
+        """
+        normal_word = "item{:3}: {:30} {:4}"
+        word_list = [normal_word.format(index, item, round(score,3))for index,(item,score) in enumerate(word_feq_list)]
+        [print(len(item)) for item in word_list]
+        return word_list
 
     def update_mindmap_event(self):
         """
@@ -271,11 +338,10 @@ class App(customtkinter.CTk):
         it looks at the checked boxes and takes all the checked boxes in the page
         """
         selected_positive_words = []
-        print('hi')
         for checkbox in self.scrollable_checkbox_frame.checkbox_list:
             if checkbox.get() == 1:
                 if checkbox.cget("text")[0]:
-                    selected_positive_words.append(checkbox.cget("text")[0])
+                    selected_positive_words.append(checkbox.cget("text"))
         print('selected', selected_positive_words)
         self.mindmap_last_added_path, self.last_added_freq_list = wordcloud_semants.generate_word_cloud_from_freq\
             (frequency_list=selected_positive_words, path_to_save=self.mindmap_path_save)
